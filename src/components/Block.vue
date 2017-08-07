@@ -18,7 +18,9 @@ export default {
     },
     render(h) {
         const cellMap = util.calcCellMap(this.rows, this.cols);
-        console.log(util.calcAreasByPattern(cellMap, this.pattern))
+        const areas = util.calcAreasByPattern(cellMap, this.pattern);
+        const layouts = util.layout(cellMap, areas);
+        console.log(layouts);
         return (<div>sss</div>);
     }
 }

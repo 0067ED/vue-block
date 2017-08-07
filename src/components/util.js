@@ -236,7 +236,7 @@ export default {
         const max = (isRow ? maxY : maxX) - 1;
         const maxCellCount = isRow ? maxX : maxY;
         const type = isRow ? 'row' : 'col';
-        const spanName = isRow ? 'rowSpan' : 'colSpan';
+        const spanName = isRow ? 'colSpan' : 'rowSpan';
         const staticIndexName = isRow ? 'y' : 'x';
         const dynamicIndexName = isRow ? 'x' : 'y';
         const lines = [];
@@ -259,7 +259,7 @@ export default {
             let j = 0;
             for (; j < maxCellCount; j++) {
                 const beforeCell = isRow ? cellMap[i][j] : cellMap[j][i];
-                const afterCell = isRow ? cellMap[i][j + 1] : cellMap[j + 1][i];
+                const afterCell = isRow ? cellMap[i + 1][j] : cellMap[j][i + 1];
                 if (beforeCell.name === afterCell.name) {
                     tryAddLine(i, j, start);
                     start += areas[beforeCell.name][spanName];
@@ -270,15 +270,17 @@ export default {
         return lines;
     },
 
-    layout(cellMap, areas, rowFirst) {
+    layout(cellMap, areas, colFirst) {
         const maxY = cellMap.length;
         const maxX = cellMap[0].length;
+        console.log(cellMap);
+        console.log(areas);
         const rowLines = this.calcLines(cellMap, areas, true);
         const colLines = this.calcLines(cellMap, areas, false);
-        const allLines = (rowFirst ? rowLines.concat(colLines) : colLines.concat(rowLines))
+        const allLines = (colFirst ? colLines.concat(rowLines) : rowLines.concat(colLines))
             .sort((a, b) => b.span - a.span);
         // Must be two cells.
         const longestLines = allLines[0];
-        console.log(longestLines);
+        console.log(allLines);
     }
 };
