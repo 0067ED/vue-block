@@ -17,9 +17,9 @@ export default {
         alignItems: String
     },
     render(h) {
-        console.log(this.$slots);
-        console.log(util.calcCellMap(this.rows, this.cols));
-        return (<div></div>);
+        const cellMap = util.calcCellMap(this.rows, this.cols);
+        console.log(util.calcAreasByPattern(cellMap, this.pattern))
+        return (<div>sss</div>);
     }
 }
 </script>

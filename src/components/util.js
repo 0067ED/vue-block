@@ -42,38 +42,113 @@ function parseRowsOrCols(items) {
     }, []);
 }
 
-function createArea(name, cell) {
-    return {
-        name,
-        width: [cell.width],
-        height: [cell.height]
-    };
+function isInside(x, xStart, xEnd) {
+    return (x >= xStart) && (x <= xEnd);
 }
-function mergeCell2Area(area, cell, newRow) {
-    if (newRow) {
-        area.height
-    }
-}
-function addCell(areas, name, cell, newRow) {
-    if (areas.length === 0) {
-        areas.push(createArea(name, cell));
-    }
-    else if (newRow) {
 
+/**
+ * Add one cell into area.
+ * @param {Object} area area info.
+ * @param {Object} cell cell info.
+ * @param {number} x cell x position.
+ * @param {number} y cell y position.
+ */
+function addCellIntoArea(area, cell, x, y) {
+    const xStart = area.x;
+    const xEnd = xStart + area.colSpan - 1;
+    const yStart = area.y;
+    const yEnd = yStart + area.rowSpan - 1;
+
+    const xInside = isInside(x, xStart, xEnd);
+    const yInside = isInside(y, yStart, yEnd);
+    if (xInside && yInside) {
+        // area is 1.
+        // cell is x.
+        // 1, 1, 1,
+        // 1, x, 0,
+        // cell is already inside area.
+        return;
     }
-    else {
-        const lastRow = areas[areas.length - 1];
-        const lastArea = lastRow[lastRow.length - 1];
-        if (lastArea.name === name) {
-            lastArea.width
-        }
-        else {
-            lastRow.push(createArea(name, cell));
-        }
+
+    if (!isInside(x, xStart - 1, xEnd + 1)
+        || !isInside(y, yStart - 1, yEnd + 1)) {
+        // area is 1.
+        // cell is x.
+        // 1, 1, 1, 0, x
+        // 1, 1, 1, 0, 0
+        // drop this cell.
+        return;
+    }
+
+    if (!xInside) {
+        area.width.push(cell.width);
+        area.colSpan++;
+        area.x = (area.x > x) ? x : area.x;
+    }
+    if (!yInside) {
+        // isYInside
+        area.height.push(cell.height);
+        area.rowSpan++;
+        area.y = (area.y > y) ? y : area.y;
     }
 }
+
+
+/*
+
+    Cell format
+    ```
+    {
+        name: 'xxxx',
+        // row info
+        height: '200px',
+        rowStart: 'vstart',
+        rowEnd: 'vend',
+        // col info
+        width: '200px',
+        colStart: 'hstart',
+        colEnd: 'hend'
+    }
+    ```
+    Cell map format
+    ```
+    [
+        [ cell00, cell01, cell02 ],
+        [ cell10, cell11, cell12 ]
+    ]
+    ```
+
+    Area format
+    ```
+    {
+        // row info
+        y: 0,
+        rowSpan: 1,
+        height: ['100px', '200px'],
+        // col info
+        x: 0,
+        colSpan: 1,
+        width: ['100px', 'auto']
+    ```
+
+    Line format
+    ```
+    {
+        type: 'row',        // row | col
+        span: 2,            // crossed cell count
+        x: 0,
+        y: 0
+    }
+    ```
+*/
 
 export default {
+    /**
+     * calculate cell map.
+     * @param {string} inputRows rows.
+     * @param {string} inputCols cols.
+     * @return {Array.<Array.<Object>>} cell map.
+     */
     calcCellMap(inputRows, inputCols) {
         const rows = parseRowsOrCols(inputRows);
         const cols = parseRowsOrCols(inputCols);
@@ -103,35 +178,107 @@ export default {
         return cellMap;
     },
 
-    calcAreaMapByTemplate(cellMap, template) {
-        template = template.split(',').map((tmpl) => {
+    /**
+     * calculate areas by pattern and cell map.
+     * and add name for every cell.
+     * @param {Array.<Array.<Object>>} cellMap cell map.
+     * @param {string} pattern string.
+     * @return {Object} all areas.
+     *          `{ areaName: area, areaName2: area }`
+     */
+    calcAreasByPattern(cellMap, pattern) {
+        /*
+        [
+            [ 'head', 'head', 'side' ],
+            [ 'body', 'body', 'side' ]
+        ]
+        */
+        pattern = pattern.split(',').map((tmpl) => {
             return tmpl.split(' ').filter((input) => !!input);
         });
-        console.log(template);
+        return pattern.reduce((results, templateNames, rowIndex) => {
+            return templateNames.reduce((results, cellName, colIndex) => {
+                const cell = cellMap[rowIndex][colIndex];
+                // NOTE add name for cell.
+                cell.name = cellName;
+                const area = results[cellName];
+                if (area) {
+                    addCellIntoArea(area, cell, colIndex, rowIndex);
+                }
+                else {
+                    results[cellName] = {
+                        // row info
+                        y: rowIndex,
+                        rowSpan: 1,
+                        height: [cell.width],
+                        // col info
+                        x: colIndex,
+                        colSpan: 1,
+                        width: [cell.height]
+                    };
+                }
+                return results;
+            }, results);
+        }, {});
+    },
+
+    /**
+     * calculate row or col lines
+     * @param {Array.<Array.<Object>>} cellMap cell map.
+     * @param {Object} all areas.
+     *          `{ areaName: area, areaName2: area }`
+     * @param {boolean} isRow is row or col
+     * @return {Array.<Object>} lines
+     */
+    calcLines(cellMap, areas, isRow) {
         const maxY = cellMap.length;
         const maxX = cellMap[0].length;
-        let x, y = 0;
-        // `[{width, height, name}]`
-        const result = [];
-        let cell;
-        let area;
-        while (x < maxX && y < maxY) {
-            area = area || {
-                width: [],
-                height: []
-            };
-            tmpl = template[y][x];
-            cell = cellMap[y][x];
-            if (area.name == null || area.name === tmpl.name) {
-                // no area or same area
-                area.name = tmpl.name;
-                area.width.push(cell.width);
-                area.height.push(cell.height);
-                x++;
+        const max = (isRow ? maxY : maxX) - 1;
+        const maxCellCount = isRow ? maxX : maxY;
+        const type = isRow ? 'row' : 'col';
+        const spanName = isRow ? 'rowSpan' : 'colSpan';
+        const staticIndexName = isRow ? 'y' : 'x';
+        const dynamicIndexName = isRow ? 'x' : 'y';
+        const lines = [];
+        function tryAddLine(i, j, start) {
+            if (j <= start) {
+                return;
             }
-            else {
 
-            }
+            let line = {
+                type,
+                span: j - start,    // crossed cell count
+            };
+            line[staticIndexName] = i + 1;
+            line[dynamicIndexName] = start;
+            lines.push(line);
         }
+
+        for (let i = 0; i < max; i++) {
+            let start = 0;
+            let j = 0;
+            for (; j < maxCellCount; j++) {
+                const beforeCell = isRow ? cellMap[i][j] : cellMap[j][i];
+                const afterCell = isRow ? cellMap[i][j + 1] : cellMap[j + 1][i];
+                if (beforeCell.name === afterCell.name) {
+                    tryAddLine(i, j, start);
+                    start += areas[beforeCell.name][spanName];
+                }
+            }
+            tryAddLine(i, j, start);
+        }
+        return lines;
+    },
+
+    layout(cellMap, areas, rowFirst) {
+        const maxY = cellMap.length;
+        const maxX = cellMap[0].length;
+        const rowLines = this.calcLines(cellMap, areas, true);
+        const colLines = this.calcLines(cellMap, areas, false);
+        const allLines = (rowFirst ? rowLines.concat(colLines) : colLines.concat(rowLines))
+            .sort((a, b) => b.span - a.span);
+        // Must be two cells.
+        const longestLines = allLines[0];
+        console.log(longestLines);
     }
 };
