@@ -3,11 +3,12 @@
     <img src="./assets/logo.png">
     <block
         rows="[start] 400px [second] 200px [third] 100px [end]"
-        cols="500px auto"
-        pattern="header header, side main, side main">
+        cols="500px auto 100px"
+        pattern="header header right, side main right, side main right">
         <block area="header"></block>
         <block area="side"></block>
         <block area="main"></block>
+        <block area="right"></block>
     </block>
   </div>
 </template>
