@@ -34,11 +34,11 @@ export default {
                 'block-area': isOnepiece
             };
             clazz[spClazz] = isOnepiece;
-            clazz[`block--${div.type}`] = !isOnepiece;
+            clazz[`block-${div.type}`] = !isOnepiece;
             util.calcCSSWidthAndHeight(div);
             const style = {
-                width: div.csswidth || '',
-                height: div.cssheight || ''
+                width: div.csswidth ? `calc(${div.csswidth})` : '',
+                height: div.cssheight ? `calc(${div.cssheight})` : ''
             };
             return (<div class={clazz} style={style}>
                 {div.split
@@ -58,6 +58,9 @@ export default {
     box-sizing: border-box;
 }
 .block-row > .block-area {
+}
+.block-col {
+    text-align: left;
 }
 .block-col > .block-area {
     display: inline-block;

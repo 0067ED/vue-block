@@ -1,10 +1,15 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
-    <block
+        <!--
         rows="[start] 400px [second] 200px [third] 100px [end]"
         cols="100px 500px auto 100px"
         pattern="header header header right, side main second right, side main second right">
+    -->
+    <block
+        rows="[start] 400px [second] 200px [third] 100px [end]"
+        cols="100px 500px auto"
+        pattern="header header header, side main second, side main second">
         <div slot="header" class="header"></div>
         <div slot="side" class="side"></div>
         <div slot="main" class="main"></div>

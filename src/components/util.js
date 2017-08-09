@@ -372,23 +372,53 @@ function getFixedLength(fixedLengths, isRaw) {
     if (!isRaw) {
         fixedLengths = fixedLengths.map((len) => len.raw);
     }
-    return fixedLengths.length ? `(100%-${fixedLengths.join('-')})` : '100%';
+    return fixedLengths.length ? `(100% - ${fixedLengths.join(' - ')})` : '100%';
 }
 
 function calcCSSLength(lengths, base) {
-    let calcStr = lengths.fixed.join('+');
+    let calcStr = lengths.fixed.join(' + ');
     if (base.baseFr > 0) {
         // if has `fr` unit, then `auto` === `0`
-        lengths.auto.length = 0;
-        lengths.baseAuto = 0;
-        calcStr += base.fixedString;
-        calcStr += (base.baseFr === lengths.baseFr ? '' : `${lengths.baseFr}/${base.baseFr}`);
+        // lengths.auto.length = 0;
+        // lengths.baseAuto = 0;
+        calcStr += `${calcStr ? ' + ' : ''}${base.fixedString}`;
+        calcStr += (base.baseFr === lengths.baseFr ? '' : `*${lengths.baseFr}/${base.baseFr}`);
     }
     else if (base.baseAuto > 0 && lengths.baseAuto > 0) {
-        calcStr += base.fixedString;
-        calcStr += (base.baseAuto === lengths.baseAuto ? '' : `${lengths.baseAuto}/${base.baseAuto}`);
+        calcStr += `${calcStr ? ' + ' : ''}${base.fixedString}`;
+        calcStr += (base.baseAuto === lengths.baseAuto ? '' : `*${lengths.baseAuto}/${base.baseAuto}`);
     }
     return calcStr;
+}
+
+function parseLength(length) {
+    const r = /^([0-9\.]+)?([a-zA-Z]+)?/.exec(length);
+    if (!r) {
+        // illegal format
+        // TODO
+        return;
+    }
+
+    const unit = r[2];
+    if (typeof UNIT_MAP[unit] !== 'boolean') {
+        // illegal unit
+        // TODO
+        return;
+    }
+
+    const number = r[1];
+    if (unit === '' && number !== '0') {
+        // for pure number `12` or `67`
+        // TODO
+        return;
+    }
+
+    return {
+        number,
+        unit,
+        raw: length,
+        isFlex: UNIT_MAP[unit]
+    };
 }
 
 /*
@@ -680,35 +710,6 @@ export default {
         }
     },
 
-    parseLength(length) {
-        const r = /^([0-9\.]+)?([a-zA-Z]+)?/.exec(length);
-        if (!r) {
-            // illegal format
-            // TODO
-            return;
-        }
-
-        const unit = r[2];
-        if (typeof UNIT_MAP[unit] !== 'boolean') {
-            // illegal unit
-            // TODO
-            return;
-        }
-
-        const number = r[1];
-        if (unit === '' && number !== '0') {
-            // for pure number `12` or `67`
-            // TODO
-            return;
-        }
-
-        return {
-            number,
-            unit,
-            raw: length,
-            isFlex: UNIT_MAP[unit]
-        };
-    },
     calcCSSWidthAndHeight(div) {
         if (!div.split || !div.split.length) {
             return;
@@ -718,12 +719,12 @@ export default {
     },
 
     calcCSSWidthOrHeight(div, widthOrHeight) {
-        const baseLengths = div[widthOrHeight].map(this.parseLength.bind(this));
+        const baseLengths = div[widthOrHeight].map(parseLength);
         const typedBaseLengths = divideLengthByType(baseLengths);
         div.split.forEach((d) => {
-            const typedLengths = divideLengthByType(d[widthOrHeight]);
+            const typedLengths = divideLengthByType(d[widthOrHeight].map(parseLength));
             const cssStr = calcCSSLength(typedLengths, typedBaseLengths);
-            div.split['css' + widthOrHeight] = cssStr;
+            d['css' + widthOrHeight] = cssStr;
         });
     }
 };
