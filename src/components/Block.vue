@@ -21,7 +21,31 @@ export default {
         const areas = util.calcAreasByPattern(cellMap, this.pattern);
         const layouts = util.layout(cellMap, areas);
         console.log(layouts);
-        return (<div>sss</div>);
+        console.log(this.$slots);
+        return this.renderDiv(h, layouts);
+    },
+    methods: {
+        renderDiv(h, div) {
+            // WOW, I love one piece. ^^
+            const isOnepiece = !div.type;
+            const spClazz = `block-pattern-${div.name}`;
+            const clazz = {
+                'block': true,
+                'block-area': isOnepiece
+            };
+            clazz[spClazz] = isOnepiece;
+            clazz[`block--${div.type}`] = !isOnepiece;
+            util.calcCSSWidthAndHeight(div);
+            const style = {
+                width: div.csswidth || '',
+                height: div.cssheight || ''
+            };
+            return (<div class={clazz} style={style}>
+                {div.split
+                    ? div.split.map(this.renderDiv.bind(this, h))
+                    : this.$slots[div.name] || ''}
+            </div>)
+        }
     }
 }
 </script>
@@ -29,5 +53,17 @@ export default {
 <style lang="css">
 .block {
     display: block;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.block-row > .block-area {
+}
+.block-col > .block-area {
+    display: inline-block;
+    vertical-align: top;
+}
+.block-area {
+
 }
 </style>

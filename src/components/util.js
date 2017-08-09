@@ -5,6 +5,13 @@ console.log(`
 │└───┘└───┘│
 └──────────┘`);
 
+const UNIT_MAP = Object.create(null);
+UNIT_MAP.fr = true;
+UNIT_MAP.auto = true;
+UNIT_MAP.px = false;
+UNIT_MAP['%'] = false;
+UNIT_MAP[''] = false;
+
 /**
  * Parse input
  * @param {string} items like
@@ -215,7 +222,6 @@ function fillupDiv(lines, div) {
         return;
     }
 
-    console.log(line, div);
     div.type = line.type;
     // split div.
     const lineIsRow = line.type === 'row';
@@ -239,25 +245,150 @@ function fillupDiv(lines, div) {
     fillupDiv(lines, div.split[1]);
 }
 
-function flatDiv(div) {
+/**
+ * Flatten div split, and add `width / height / name / dirty`.
+ *
+ * @param {Array.<Array.<Object>>} cell map.
+ * @param {Object} areas areas.
+ * @param {Object} div div.
+ * @param {Object=} usedAreaNames used area names.
+ */
+function normalizeDiv(cellMap, areas, div, usedAreaNames) {
+    usedAreaNames = usedAreaNames || Object.create(null);
     if (!div.split || !div.split.length) {
+        mapDivAndArea(cellMap, areas, div, usedAreaNames);
         return;
     }
 
     const before = div.split[0];
     const after = div.split[1];
-    flatDiv(before);
-    flatDiv(after);
+    normalizeDiv(cellMap, areas, before, usedAreaNames);
+    normalizeDiv(cellMap, areas, after, usedAreaNames);
 
     if (div.type === before.type) {
         div.split.shift();
-        div.split.unshift.call(div.split, before.split);
+        div.split.unshift.apply(div.split, before.split);
     }
 
     if (div.type === after.type) {
         div.split.pop();
-        div.split.push.call(div.split, after.split);
+        div.split.push.apply(div.split, after.split);
     }
+
+    const isRow = div.type === 'row';
+    const firstCleanSplit = findFirstCleanSplit(div.split);
+    div.width = isRow ? firstCleanSplit.width :sumHeightOrWidth(div.split, 'width');
+    div.height = isRow ? sumHeightOrWidth(div.split, 'height') : firstCleanSplit.height;
+}
+
+function sumHeightOrWidth(splits, heightOrWidth) {
+    const results = [];
+    for (let i = 0, l = splits.length; i < l; i++) {
+        const split = splits[i];
+        if (!split) {
+            continue;
+        }
+        results.push.apply(results, split[heightOrWidth]);
+    }
+    return results;
+}
+
+function findFirstCleanSplit(splits) {
+    for (let i = 0, l = splits.length; i < l; i++) {
+        const split = splits[i];
+        if (!split || split.dirty) {
+            continue;
+        }
+        return split;
+    }
+}
+
+/**
+ * Map area to div, add `width / height / name / dirty`.
+ *
+ * @param {Array.<Array.<Object>>} cell map.
+ * @param {Object} areas areas.
+ * @param {Object} div div.
+ * @param {Object=} usedAreaNames used area names.
+ */
+function mapDivAndArea(cellMap, areas, div, usedAreaNames) {
+    const x = div.x;
+    const y = div.y;
+    const cell = cellMap[y][x];
+    if (!cell) {
+        return;
+    }
+
+    const cellName = cell.name;
+    const area = areas[cellName];
+    if (!area) {
+        return;
+    }
+
+    if (usedAreaNames[cellName]) {
+        // allready used
+        div.dirty = true;
+        // TODO
+    }
+    usedAreaNames[cellName] = 1;
+    div.name = cellName;
+    div.width = area.width;
+    div.height = area.height;
+}
+
+/**
+ * divide length into types
+ * @param {Array.<string>} lengths `['100px', '0', '10%', '1fr', 'auto']`
+ * @return {Object}
+ *          ```
+ *          {
+ *              fixed: ['100px', '200%'],
+ *              fr: [lengthFormat],
+ *              auto: [lengthFormat],
+ *              fixedString: '(100%-100px-20%})',
+ *              baseFr: 5,          // base count of `fr`
+ *              baseAuto: 1         // base count of `auto`
+ *          }
+ *          ```
+ */
+function divideLengthByType(lengths) {
+    let typedLengths = {
+        fixed: [],
+        fr: [],
+        auto: []
+    };
+    typedLengths = lengths.reduce((results, len) => {
+        const type = len.isFlex ? len.unit : 'fixed';
+        results[type].push(len.isFlex ? len : len.raw);
+        return results;
+    }, typedLengths);
+    typedLengths.fixedString = getFixedLength(typedLengths.fixed, true);
+    typedLengths.baseFr = typedLengths.fr.reduce((count, len) => count + parseInt(len, 10), 0);
+    typedLengths.baseAuto = typedLengths.auto.length;
+    return typedLengths;
+}
+
+function getFixedLength(fixedLengths, isRaw) {
+    if (!isRaw) {
+        fixedLengths = fixedLengths.map((len) => len.raw);
+    }
+    return fixedLengths.length ? `(100%-${fixedLengths.join('-')})` : '100%';
+}
+
+function calcCSSLength(lengths, base) {
+    let calcStr = lengths.fixed.join('+');
+    if (base.baseFr > 0) {
+        // if has `fr` unit, then `auto` === `0`
+        lengths.auto.length = 0;
+        lengths.baseAuto = 0;
+        calcStr += base.fixedString;
+        calcStr += (base.baseFr === lengths.baseFr ? '' : `${lengths.baseFr}/${base.baseFr}`);
+    }
+    else if (base.baseAuto > 0 && lengths.baseAuto > 0) {
+        calcStr += base.fixedString;
+        calcStr += (base.baseAuto === lengths.baseAuto ? '' : `${lengths.baseAuto}/${base.baseAuto}`);
+    }
+    return calcStr;
 }
 
 /*
@@ -265,6 +396,7 @@ function flatDiv(div) {
     Cell format
     ```
     {
+        // pattern name
         name: 'xxxx',
         // row info
         height: '200px',
@@ -287,6 +419,7 @@ function flatDiv(div) {
     Area format
     ```
     {
+        // pattern name
         name: 'xxx',
         // row info
         y: 0,
@@ -319,8 +452,20 @@ function flatDiv(div) {
         // if not root, then it is col info
         x: 0,
         colSpan: 1,
-        // if only has one area, then it is.
-        area: someArea
+        // if only has no split value.
+        name: 'xxxx',                   // pattern name
+        height: ['100px', '200px'],
+        width: ['100px', 'auto']
+    }
+    ```
+
+    Length format
+    ```
+    {
+        number: '10',
+        unit: 'px',         // 'px', '%', 'auto', 'fr'
+        raw: '10px',
+        isFlex: false
     }
     ```
 */
@@ -384,8 +529,9 @@ export default {
             throw new Error('[BLOCK] `template`, `rows`, `cols` not match. ');
         }
 
-        return pattern.reduce((results, templateNames, rowIndex) => {
-            return templateNames.reduce((results, cellName, colIndex) => {
+        console.log(pattern);
+        return pattern.reduce((results, patternNames, rowIndex) => {
+            return patternNames.reduce((results, cellName, colIndex) => {
                 const cell = cellMap[rowIndex][colIndex];
                 // NOTE add name for cell.
                 cell.name = cellName;
@@ -399,11 +545,11 @@ export default {
                         // row info
                         y: rowIndex,
                         rowSpan: 1,
-                        height: [cell.width],
+                        height: [cell.height],
                         // col info
                         x: colIndex,
                         colSpan: 1,
-                        width: [cell.height]
+                        width: [cell.width]
                     };
                 }
                 return results;
@@ -449,12 +595,15 @@ export default {
         for (let i = 0; i < max; i++) {
             let start = 0;
             let j = 0;
-            for (; j < maxCellCount; j++) {
+            while (j < maxCellCount) {
                 const beforeCell = isRow ? cellMap[i][j] : cellMap[j][i];
                 const afterCell = isRow ? cellMap[i + 1][j] : cellMap[j][i + 1];
                 if (beforeCell.name === afterCell.name) {
                     tryAddLine(i, j, start);
-                    start += areas[beforeCell.name][spanName];
+                    j = start = j + areas[beforeCell.name][spanName];
+                }
+                else {
+                    j++;
                 }
             }
             tryAddLine(i, j, start);
@@ -470,6 +619,7 @@ export default {
         const rowLines = this.calcLines(cellMap, areas, true);
         const colLines = this.calcLines(cellMap, areas, false);
         const allLines = colFirst ? colLines.concat(rowLines) : rowLines.concat(colLines);
+        console.log(allLines);
 
         if (!allLines.length) {
             // only one area found.
@@ -486,7 +636,94 @@ export default {
             colSpan: maxX
         };
         fillupDiv(allLines, rootDiv);
-        // flatDiv(rootDiv);
+        normalizeDiv(cellMap, areas, rootDiv);
         return rootDiv;
+    },
+
+    /**
+     * Sum length like `100px, 0, 10%, 1fr, auto`.
+     *
+     * @param {Array.<string>} lengths length.
+     * @return {string} result for css width.
+     */
+    sumLength(lengths) {
+        const reg = /^([0-9]+)?([a-zA-Z]+)?/;
+        let useAuto = false;
+        const fixedLength = [];
+        const flexLength = [];
+        for (let i = 0, l = lengths.length; i < l; i++) {
+            const len = lengths[i];
+            const r = reg.exec(len);
+            if (!r) {
+                continue;
+            }
+
+            const number = r[1];
+            const unit = r[2];
+            switch (unit) {
+                case 'px':
+                case '%':
+                    fixedLength.push(len);
+                    break;
+                case '':
+                    if (number === '0') {
+                        fixedLength.push(len);
+                    }
+                    break;
+                case 'fr':
+                    break;
+                case 'auto':
+                    break;
+                default:
+                    break;
+            }
+        }
+    },
+
+    parseLength(length) {
+        const r = /^([0-9\.]+)?([a-zA-Z]+)?/.exec(length);
+        if (!r) {
+            // illegal format
+            // TODO
+            return;
+        }
+
+        const unit = r[2];
+        if (typeof UNIT_MAP[unit] !== 'boolean') {
+            // illegal unit
+            // TODO
+            return;
+        }
+
+        const number = r[1];
+        if (unit === '' && number !== '0') {
+            // for pure number `12` or `67`
+            // TODO
+            return;
+        }
+
+        return {
+            number,
+            unit,
+            raw: length,
+            isFlex: UNIT_MAP[unit]
+        };
+    },
+    calcCSSWidthAndHeight(div) {
+        if (!div.split || !div.split.length) {
+            return;
+        }
+        this.calcCSSWidthOrHeight(div, 'width');
+        this.calcCSSWidthOrHeight(div, 'height');
+    },
+
+    calcCSSWidthOrHeight(div, widthOrHeight) {
+        const baseLengths = div[widthOrHeight].map(this.parseLength.bind(this));
+        const typedBaseLengths = divideLengthByType(baseLengths);
+        div.split.forEach((d) => {
+            const typedLengths = divideLengthByType(d[widthOrHeight]);
+            const cssStr = calcCSSLength(typedLengths, typedBaseLengths);
+            div.split['css' + widthOrHeight] = cssStr;
+        });
     }
 };
