@@ -114,11 +114,11 @@ function calcLongestLineInsideDiv(lines, div) {
 
         const resultPercent = result.span / getBaseSpan(result);
         const thisPercent = crossedLine.span / getBaseSpan(crossedLine);
-        const notLonger = resultPercent > thisPercent;
-        if (!notLonger) {
+        if (thisPercent >= resultPercent) {
             index = i;
+            return crossedLine;
         }
-        return notLonger ? result : crossedLine;
+        return result;
     }, null);
 
     if (!crossedLine) {
