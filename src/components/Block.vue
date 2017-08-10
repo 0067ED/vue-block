@@ -62,7 +62,7 @@ export default {
 .block-col {
     text-align: left;
 }
-.block-col > .block-area {
+.block-col > .block {
     display: inline-block;
     vertical-align: top;
 }
