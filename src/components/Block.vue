@@ -1,5 +1,5 @@
 <script>
-import util from './util';
+import {layout, calcCSS} from './algorithm';
 export default {
     name: 'Block',
     props: {
@@ -17,11 +17,8 @@ export default {
         alignItems: String
     },
     render(h) {
-        const cellMap = util.calcCellMap(this.rows, this.cols);
-        const areas = util.calcAreasByPattern(cellMap, this.pattern);
-        const layouts = util.layout(cellMap, areas);
+        const layouts = layout(this.pattern, this.rows, this.cols);
         console.log(layouts);
-        console.log(this.$slots);
         return this.renderDiv(h, layouts);
     },
     methods: {
@@ -35,7 +32,7 @@ export default {
             };
             clazz[spClazz] = isOnepiece;
             clazz[`block-${div.type}`] = !isOnepiece;
-            util.calcCSSWidthAndHeight(div);
+            calcCSS(div);
             const style = {
                 width: div.csswidth ? `calc(${div.csswidth})` : '',
                 height: div.cssheight ? `calc(${div.cssheight})` : ''
