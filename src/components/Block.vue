@@ -1,5 +1,37 @@
 <script>
 import {layout, calcCSS} from './algorithm';
+import {mergeClassOrStyle} from './vnode';
+
+/**
+ * Render VNodes.
+ * if more than one vnode, then wrap it with div.
+ * if empty, then return div.
+ * @param {Function} h createElement function.
+ * @param {Array.<VNode>} vnodes vnodes or null.
+ * @param {*=} class class
+ * @param {Array<Object>|Object=} style style.
+ * @return {VNode} one vnode.
+ */
+function renderVNodes(h, vnodes, clazz, style) {
+    console.log(vnodes);
+    if (vnodes && vnodes.length === 1) {
+        // only one node
+        const singleNode = vnodes[0];
+        singleNode.data = singleNode.data || {};
+        if (clazz) {
+            singleNode.data.class = mergeClassOrStyle(singleNode.data.class, clazz);
+        }
+        if (style) {
+            singleNode.data.style = mergeClassOrStyle(singleNode.data.style, style);
+        }
+        return singleNode;
+    }
+
+    // 2, 3, ...
+    return <div class={clazz} style={style}>
+        {vnodes || ''}
+    </div>;
+}
 
 function renderDiv(h, context, div) {
     // WOW, I love one piece. ^^
@@ -25,18 +57,7 @@ function renderDiv(h, context, div) {
 
     // is area
     const usedSlot = context.slots()[div.name];
-    if (usedSlot && usedSlot.length === 1) {
-        // only one node
-        const singleVNode = usedSlot[0];
-        singleVNode.data.class = clazz;
-        singleVNode.data.style = style;
-        return singleVNode;
-    }
-
-    // 2, 3, ...
-    return <div class={clazz} style={style}>
-        {usedSlot || ''}
-    </div>;
+    return renderVNodes(h, usedSlot, clazz, style);
 }
 
 export default {

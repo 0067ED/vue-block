@@ -10,7 +10,7 @@
         rows="[start] 100px [second] 200px [third] 100px [end]"
         cols="100px 300px auto 100px"
         pattern="header header header right, side main second right, side main second right">
-        <div slot="header" class="header"></div>
+        <div slot="header" class="header" :class="clazz" :style="style"></div>
         <div slot="side" class="side"></div>
         <div slot="main" class="main"></div>
         <div slot="right" class="right"></div>
@@ -25,6 +25,14 @@ import Block from './components/Block';
 
 export default {
     name: 'app',
+    data() {
+        return {
+            clazz: ['header1', 'header2'],
+            style: {
+                opacity: 0.5
+            }
+        };
+    },
     components: {
         Block
     }
