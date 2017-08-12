@@ -1,7 +1,47 @@
 <script>
 import {layout, calcCSS} from './algorithm';
+
+function renderDiv(h, context, div) {
+    // WOW, I love one piece. ^^
+    const isOnepiece = !div.type;
+    const spClazz = `block-pattern-${div.name}`;
+    const clazz = {
+        'block': true,
+        'block-area': isOnepiece
+    };
+    clazz[spClazz] = isOnepiece;
+    clazz[`block-${div.type}`] = !isOnepiece;
+    calcCSS(div);
+    const style = {
+        width: div.csswidth || '',
+        height: div.cssheight || ''
+    };
+
+    if (div.split) {
+        return <div class={clazz} style={style}>
+            {div.split.map(renderDiv.bind(null, h, context))}
+        </div>;
+    }
+
+    // is area
+    const usedSlot = context.slots()[div.name];
+    if (usedSlot && usedSlot.length === 1) {
+        // only one node
+        const singleVNode = usedSlot[0];
+        singleVNode.data.class = clazz;
+        singleVNode.data.style = style;
+        return singleVNode;
+    }
+
+    // 2, 3, ...
+    return <div class={clazz} style={style}>
+        {usedSlot || ''}
+    </div>;
+}
+
 export default {
     name: 'Block',
+    functional: true,
     props: {
         rows: {
             type: String,
@@ -16,33 +56,12 @@ export default {
         justifyItems: String,
         alignItems: String
     },
-    render(h) {
-        const layouts = layout(this.pattern, this.rows, this.cols);
+    render(h, context) {
+        console.log(context.pattern);
+        const props = context.props;
+        const layouts = layout(props.pattern, props.rows, props.cols);
         console.log(layouts);
-        return this.renderDiv(h, layouts);
-    },
-    methods: {
-        renderDiv(h, div) {
-            // WOW, I love one piece. ^^
-            const isOnepiece = !div.type;
-            const spClazz = `block-pattern-${div.name}`;
-            const clazz = {
-                'block': true,
-                'block-area': isOnepiece
-            };
-            clazz[spClazz] = isOnepiece;
-            clazz[`block-${div.type}`] = !isOnepiece;
-            calcCSS(div);
-            const style = {
-                width: div.csswidth || '',
-                height: div.cssheight || ''
-            };
-            return (<div class={clazz} style={style}>
-                {div.split
-                    ? div.split.map(this.renderDiv.bind(this, h))
-                    : this.$slots[div.name] || ''}
-            </div>)
-        }
+        return renderDiv(h, context, layouts);
     }
 }
 </script>

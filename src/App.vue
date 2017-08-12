@@ -14,7 +14,8 @@
         <div slot="side" class="side"></div>
         <div slot="main" class="main"></div>
         <div slot="right" class="right"></div>
-        <div slot="second" class="second"></div>
+        <div slot="second" class="second1"></div>
+        <div slot="second" class="second2"></div>
     </block>
   </div>
 </template>
@@ -56,7 +57,7 @@ export default {
 .main:before,
 .right:before,
 .second:before {
-    content: 'attr(class)';
+    content: attr(class);
     color: #FFF;
 }
 
@@ -72,7 +73,12 @@ export default {
 .right {
     background: #845ef7;
 }
-.second {
+.second1 {
+    height: 50%;
     background: #5c7cfa;
+}
+.second2 {
+    height: 50%;
+    background: #e67700;
 }
 </style>
