@@ -34,8 +34,8 @@ export default {
             clazz[`block-${div.type}`] = !isOnepiece;
             calcCSS(div);
             const style = {
-                width: div.csswidth ? `calc(${div.csswidth})` : '',
-                height: div.cssheight ? `calc(${div.cssheight})` : ''
+                width: div.csswidth || '',
+                height: div.cssheight || ''
             };
             return (<div class={clazz} style={style}>
                 {div.split

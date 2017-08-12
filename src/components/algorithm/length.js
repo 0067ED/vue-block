@@ -20,6 +20,16 @@
         baseAuto: 1         // base count of `auto`
     }
     ```
+
+    CSS Length format
+    ```
+    {
+        baseFixed: ['100px', '200%'],
+        fixed: ['100px'],
+        baseFree: 2,
+        free: 1
+    }
+    ```
 */
 
 
@@ -46,33 +56,87 @@ function divideLengthByType(lengths) {
         results[type].push(len.isFlex ? len : len.raw);
         return results;
     }, typedLengths);
-    typedLengths.fixedString = getFixedLength(typedLengths.fixed, true);
+    // typedLengths.fixedString = getFixedLength(typedLengths.fixed, true);
     typedLengths.baseFr = typedLengths.fr.reduce((count, len) => count + parseInt(len, 10), 0);
     typedLengths.baseAuto = typedLengths.auto.length;
     return typedLengths;
 }
 
+/*
 function getFixedLength(fixedLengths, isRaw) {
     if (!isRaw) {
         fixedLengths = fixedLengths.map((len) => len.raw);
     }
     return fixedLengths.length ? `(100% - ${fixedLengths.join(' - ')})` : '100%';
 }
+*/
+
+/**
+ * Remove dumplicate value inside both array.
+ * Only remove by pair. And do not modify the input array.
+ * @param {Array.<string>} array1 array one.
+ * @param {Array.<string>} array2 array two.
+ * @return {Array.<Array>} result.
+ */
+function removeDuplicateValue(array1, array2) {
+    array1 = array1.concat();
+    array2 = array2.filter((item) => {
+        const i = array1.indexOf(item);
+        const r = ~i;
+        if (r) {
+            array1.splice(i, 1);
+        }
+        return !r;
+    });
+    return [array1, array2];
+}
 
 function calcCSSLength(lengths, base) {
-    let calcStr = lengths.fixed.join(' + ');
-    if (base.baseFr > 0) {
-        // if has `fr` unit, then `auto` === `0`
-        // lengths.auto.length = 0;
-        // lengths.baseAuto = 0;
-        calcStr += `${calcStr ? ' + ' : ''}${base.fixedString}`;
-        calcStr += (base.baseFr === lengths.baseFr ? '' : `*${lengths.baseFr}/${base.baseFr}`);
+    const baseFixed = base.fixed;
+    const fixed = lengths.fixed;
+    // if has `fr` unit, then `auto` === `0`
+    const hasFRUnit = base.baseFr > 0;
+    const baseFree = hasFRUnit ? base.baseFr : base.baseAuto;
+    const free = hasFRUnit ? lengths.baseFr : lengths.baseAuto;
+    if (baseFree === 0 || free === 0) {
+        // optimise for this case.
+        // no free unit or no free unit inside this lengths
+        // calc(fixed)
+        // calc(100px + 10%)
+        // 100px
+        return fixed.length > 1 ? `calc(${fixed.join(' + ')})` : (fixed[0] || '');
     }
-    else if (base.baseAuto > 0 && lengths.baseAuto > 0) {
+
+    if (baseFree !== free) {
+        // calc(fixed + (100% - basedFixed) * 1 / 3 )
+        return `calc(${fixed.join(' + ')} + (100% - ${baseFixed.join(' - ')}) * ${free} / ${baseFree})`
+    }
+
+    // optimise for this case.
+    // all free unit inside this lengths
+    // calc(fixed + 100% - basedFixed)
+    const clean = removeDuplicateValue(fixed, baseFixed);
+    const cleanBaseFixed = clean[1];
+    const cleanFixed = clean[0];
+    return cleanBaseFixed.length
+        ? cleanFixed.length
+            // calc(10px + 100% - 100px)
+            ? `calc(${cleanFixed.join(' + ')} + 100% - ${cleanBaseFixed.join(' - ')})`
+            // calc(100% - 100px)
+            : `calc(100% - ${cleanBaseFixed.join(' - ')})`
+        // 100%
+        : '100%';
+
+    /*
+    let calcStr = lengths.fixed.join(' + ');
+    const freeUnit = hasFRUnit ? lengths.baseFr : lengths.baseAuto;
+    const baseFreeUnit = hasFRUnit ? base.baseFr : base.baseAuto;
+    if (freeUnit > 0 && baseFreeUnit > 0) {
         calcStr += `${calcStr ? ' + ' : ''}${base.fixedString}`;
-        calcStr += (base.baseAuto === lengths.baseAuto ? '' : `*${lengths.baseAuto}/${base.baseAuto}`);
+        calcStr += (baseFreeUnit === freeUnit ? '' : `*${freeUnit}/${baseFreeUnit}`);
     }
     return calcStr;
+    */
 }
 
 /**
