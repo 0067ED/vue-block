@@ -6,23 +6,43 @@
         cols="100px 500px auto 100px"
         pattern="header header header right, side main second right, side main second right">
     -->
-    <block
+    <block class="example example-1"
         rows="[start] 100px [second] 200px [third] 100px [end]"
         cols="100px 300px auto 100px"
         pattern="header header test right, side main second right, side main second right">
-        <div slot="header" class="header" :class="clazz" :style="style"></div>
-        <div slot="side" class="side"></div>
-        <div slot="main" class="main"></div>
-        <div slot="right" class="right"></div>
-        <div slot="second" class="second1"></div>
-        <div slot="second" class="second2"></div>
-        <div slot="test" class="test"></div>
+        <div slot="header" class="area-1" :class="clazz" :style="style"></div>
+        <div slot="side" class="area-2"></div>
+        <div slot="main" class="area-3"></div>
+        <div slot="right" class="area-4"></div>
+        <div slot="second" class="area-5"></div>
+        <div slot="second" class="area-6"></div>
+        <div slot="test" class="area-7"></div>
     </block>
 
+    <block class="example example-2">
+        <div slot="left" class="area-1 box"></div>
+        <div slot="left" class="area-3 box"></div>
+        <div slot="left" class="area-5 box"></div>
+        <div slot="left" class="area-2 box"></div>
+        <div slot="right" class="area-4 box"></div>
+    </block>
 
-    <block>
-        <div slot="left" class="header"></div>
-        <div slot="right" class="side"></div>
+    <block class="example example-3">
+        <div slot="center" class="area-1 box"></div>
+        <div slot="center" class="area-2 box"></div>
+        <div slot="center" class="area-3 box"></div>
+    </block>
+
+    <block class="example example-2">
+        <div slot="left" class="area-1 box"></div>
+        <div slot="left" class="area-3 box"></div>
+        <div slot="right" class="area-5 box"></div>
+        <div slot="center" class="area-2 box"></div>
+        <div slot="center" class="area-4 box"></div>
+    </block>
+
+    <block class="example example-4">
+        <div slot="middle" class="area-1 box"></div>
     </block>
   </div>
 </template>
@@ -76,27 +96,60 @@ export default {
     color: #FFF;
 }
 
-.header {
+.area-1 {
     background: #ff6b6b;
 }
-.side {
+.area-2 {
     background: #f06595;
 }
-.main {
+.area-3 {
     background: #cc5de8;
 }
-.right {
+.area-4 {
     background: #845ef7;
 }
-.second1 {
+.area-5 {
     height: 50%;
     background: #5c7cfa;
 }
-.second2 {
+.area-6 {
     height: 50%;
     background: #e67700;
 }
-.test {
+.area-7 {
     background: #5c940d;
+}
+.box {
+    width: 40px;
+    height: 40px;
+}
+
+
+#app .example {
+    position: relative;
+    margin: 40px;
+    padding: 40px;
+    border: 1px solid #adb5bd;
+}
+#app .example:before {
+    content: 'EXAMPLE';
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100px;
+    height: 20px;
+    text-align: center;
+    color: #adb5bd;
+    border-bottom: 1px solid #adb5bd;
+    border-right: 1px solid #adb5bd;
+    background: #FFF;
+}
+#app .example-4 {
+    height: 300px;
+}
+#app .example-4 .box {
+    width: 200px;
+    height: 200px;
 }
 </style>

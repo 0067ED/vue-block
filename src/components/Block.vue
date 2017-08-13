@@ -1,6 +1,6 @@
 <script>
 import {layout, calcCSS} from './algorithm';
-import {mergeClassOrStyle} from './vnode';
+import {mergeClassOrStyle, applyClass, applyStyle} from './vnode';
 
 /**
  * Render VNodes.
@@ -59,6 +59,38 @@ function renderDiv(h, context, div) {
     return renderVNodes(h, usedSlot, clazz, style);
 }
 
+function renderDefault(h, context) {
+    const slots = context.slots();
+    const clazz = {};
+    const vnodes = [];
+    if (slots.left) {
+        clazz['block-clear'] = true;
+        applyClass(slots.left, 'block-left');
+        vnodes.push.apply(vnodes, slots.left);
+    }
+
+    if (slots.center) {
+        clazz['block-center'] = true;
+        applyClass(slots.center, 'block-center');
+        vnodes.push.apply(vnodes, slots.center);
+    }
+
+    if (slots.right) {
+        clazz['block-clear'] = true;
+        applyClass(slots.right, 'block-right');
+        vnodes.push.apply(vnodes, slots.right);
+    }
+
+    if (slots.middle) {
+        clazz['block-middle-container'] = true;
+        vnodes.push(<div class="block-middle">{slots.middle}</div>);
+    }
+
+    return <div class={clazz}>
+            {vnodes}
+        </div>;
+}
+
 export default {
     name: 'Block',
     functional: true,
@@ -71,16 +103,25 @@ export default {
             type: String,
             default: 'auto'
         },
-        pattern: String,
-        area: String,
-        justifyItems: String,
-        alignItems: String
+        pattern: String
     },
     render(h, context) {
         const props = context.props;
-        const layouts = layout(props.pattern, props.rows, props.cols);
-        console.log(layouts);
-        return renderDiv(h, context, layouts);
+        let vnode;
+        if (!props.pattern) {
+            vnode = renderDefault(h, context);
+        }
+        else {
+            const layouts = layout(props.pattern, props.rows, props.cols);
+            vnode = renderDiv(h, context, layouts);
+        }
+
+        // apply custom class and style.
+        applyClass(vnode, context.data.staticClass);
+        applyClass(vnode, context.data.class);
+        applyStyle(vnode, context.data.staticStyle);
+        applyStyle(vnode, context.data.style);
+        return vnode;
     }
 }
 </script>
@@ -103,5 +144,38 @@ export default {
 }
 .block-area {
 
+}
+
+
+.block-clear:before,
+.block-clear:after {
+    content: '';
+    display: table;
+    clear: both;
+}
+.block-left {
+    float: left;
+}
+.block-right {
+    float: right;
+}
+
+
+.block-center {
+    text-align: center;
+}
+.block-middle > *,
+.block-center > * {
+    display: inline-block;
+    vertical-align: top;
+}
+.block-middle-container {
+    position: relative;
+}
+.block-middle {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 }
 </style>
