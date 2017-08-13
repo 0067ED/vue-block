@@ -91,6 +91,13 @@ function removeDuplicateValue(array1, array2) {
     return [array1, array2];
 }
 
+function _calcFixedCSSLength(fixedLengths) {
+    console.log(fixedLengths);
+    return fixedLengths.length > 1
+        ? `calc(${fixedLengths.join(' + ')})`
+        : (fixedLengths[0] || '');
+}
+
 function calcCSSLength(lengths, base) {
     const baseFixed = base.fixed;
     const fixed = lengths.fixed;
@@ -104,7 +111,7 @@ function calcCSSLength(lengths, base) {
         // calc(fixed)
         // calc(100px + 10%)
         // 100px
-        return fixed.length > 1 ? `calc(${fixed.join(' + ')})` : (fixed[0] || '');
+        return _calcFixedCSSLength(fixed);
     }
 
     if (baseFree !== free) {
@@ -177,6 +184,7 @@ export function parse(length) {
 export function calcCSSWidthOrHeight(div, widthOrHeight) {
     const baseLengths = div[widthOrHeight].map(parse);
     const typedBaseLengths = divideLengthByType(baseLengths);
+    div['cssmin' + widthOrHeight] = _calcFixedCSSLength(typedBaseLengths.fixed);
     div.split.forEach((d) => {
         const typedLengths = divideLengthByType(d[widthOrHeight].map(parse));
         const cssStr = calcCSSLength(typedLengths, typedBaseLengths);

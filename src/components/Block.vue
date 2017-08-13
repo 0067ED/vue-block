@@ -45,7 +45,9 @@ function renderDiv(h, context, div) {
     calcCSS(div);
     const style = {
         width: div.csswidth || '',
-        height: div.cssheight || ''
+        height: div.cssheight || '',
+        minWidth: div.cssminwidth || '',
+        minHeight: div.cssminheight || ''
     };
 
     if (div.split) {
@@ -131,7 +133,6 @@ export default {
     display: block;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 .block-row > .block-area {
 }
