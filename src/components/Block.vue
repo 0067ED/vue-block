@@ -13,7 +13,6 @@ import {mergeClassOrStyle} from './vnode';
  * @return {VNode} one vnode.
  */
 function renderVNodes(h, vnodes, clazz, style) {
-    console.log(vnodes);
     if (vnodes && vnodes.length === 1) {
         // only one node
         const singleNode = vnodes[0];
@@ -78,7 +77,6 @@ export default {
         alignItems: String
     },
     render(h, context) {
-        console.log(context.pattern);
         const props = context.props;
         const layouts = layout(props.pattern, props.rows, props.cols);
         console.log(layouts);

@@ -35,6 +35,10 @@ import {calcLines} from './line';
 function calcCrossedLineWithDiv(div, line) {
     const isRow = line.type === 'row';
     if (isRow) {
+        if (line.y <= div.y || line.y >= div.y + div.rowSpan) {
+            // out of div.
+            return;
+        }
         const xStart = Math.max(div.x, line.x);
         const xEnd = Math.min(div.x + div.colSpan, line.x + line.span);
         const crossedSpan = xEnd - xStart;
@@ -42,6 +46,10 @@ function calcCrossedLineWithDiv(div, line) {
             ? {type: line.type, span: crossedSpan, x: xStart, y: line.y} : null;
     }
     else {
+        if (line.x <= div.x || line.x >= div.x + div.colSpan) {
+            // out of div.
+            return;
+        }
         const yStart = Math.max(div.y, line.y);
         const yEnd = Math.min(div.y + div.rowSpan, line.y + line.span);
         const crossedSpan = yEnd - yStart;
@@ -66,7 +74,7 @@ function splitLine(long, short) {
     const lEnd = isRow ? (long.x + long.span) : (long.y + long.span);
     if (sStart > lStart) {
         const line = {
-            type: line.type,
+            type: long.type,
             span: sStart - lStart
         };
         line[isRow ? 'x' : 'y'] = lStart;
@@ -76,10 +84,10 @@ function splitLine(long, short) {
 
     if (sEnd < lEnd) {
         const line = {
-            type: line.type,
-            span: lXEnd - sXEnd
+            type: long.type,
+            span: lEnd - sEnd
         };
-        line[isRow ? 'x' : 'y'] = sXEnd;
+        line[isRow ? 'x' : 'y'] = sEnd;
         line[isRow ? 'y' : 'x'] = isRow ? long.y : long.x;
         lines.push(line);
     }
@@ -114,7 +122,7 @@ function calcLongestLineInsideDiv(lines, div) {
 
         const resultPercent = result.span / getBaseSpan(result);
         const thisPercent = crossedLine.span / getBaseSpan(crossedLine);
-        if (thisPercent >= resultPercent) {
+        if (thisPercent > resultPercent) {
             index = i;
             return crossedLine;
         }
@@ -127,7 +135,10 @@ function calcLongestLineInsideDiv(lines, div) {
 
     // remove and split the old line.
     // then push the new splitted line.
-    lines.push.apply(lines, splitLine(lines.splice(index, 1), crossedLine));
+    const splitLines = splitLine(lines.splice(index, 1)[0], crossedLine);
+    splitLines.unshift(0);
+    splitLines.unshift(index);
+    lines.splice.apply(lines, splitLines);
     return crossedLine;
 }
 

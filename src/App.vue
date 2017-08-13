@@ -9,13 +9,20 @@
     <block
         rows="[start] 100px [second] 200px [third] 100px [end]"
         cols="100px 300px auto 100px"
-        pattern="header header header right, side main second right, side main second right">
+        pattern="header header test right, side main second right, side main second right">
         <div slot="header" class="header" :class="clazz" :style="style"></div>
         <div slot="side" class="side"></div>
         <div slot="main" class="main"></div>
         <div slot="right" class="right"></div>
         <div slot="second" class="second1"></div>
         <div slot="second" class="second2"></div>
+        <div slot="test" class="test"></div>
+    </block>
+
+
+    <block>
+        <div slot="left" class="header"></div>
+        <div slot="right" class="side"></div>
     </block>
   </div>
 </template>
@@ -88,5 +95,8 @@ export default {
 .second2 {
     height: 50%;
     background: #e67700;
+}
+.test {
+    background: #5c940d;
 }
 </style>
