@@ -1,7 +1,7 @@
 {
-  "name": "jimu",
+  "name": "vue-block",
   "version": "1.0.0",
-  "description": "A Vue.js project",
+  "description": "A Vue.js component help you build grid like layout.",
   "author": "zmmbreeze <zmmbreeze0825@gmail.com>",
   "private": true,
   "scripts": {

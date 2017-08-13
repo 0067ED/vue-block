@@ -48,8 +48,6 @@
 </template>
 
 <script>
-import Block from './components/Block';
-
 export default {
     name: 'app',
     data() {
@@ -59,9 +57,6 @@ export default {
                 opacity: 0.5
             }
         };
-    },
-    components: {
-        Block
     }
 }
 </script>
