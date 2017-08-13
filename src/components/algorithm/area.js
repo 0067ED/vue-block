@@ -99,7 +99,7 @@ export function calcAreasByPattern(cellMap, pattern) {
         throw new Error('[BLOCK] `template`, `rows`, `cols` not match. ');
     }
 
-    console.log(pattern);
+    // console.log(pattern);
     return pattern.reduce((results, patternNames, rowIndex) => {
         return patternNames.reduce((results, cellName, colIndex) => {
             const cell = cellMap[rowIndex][colIndex];

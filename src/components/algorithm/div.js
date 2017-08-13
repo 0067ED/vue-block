@@ -278,12 +278,11 @@ function mapDivAndArea(cellMap, areas, div, usedAreaNames) {
 export function calcDiv(cellMap, areas) {
     const maxY = cellMap.length;
     const maxX = cellMap[0].length;
-    console.log(cellMap);
-    console.log(areas);
+    // console.log(cellMap);
+    // console.log(areas);
     const rowLines = calcLines(cellMap, areas, true);
     const colLines = calcLines(cellMap, areas, false);
     const allLines = rowLines.concat(colLines);
-    console.log(allLines);
 
     if (!allLines.length) {
         // only one area found.
