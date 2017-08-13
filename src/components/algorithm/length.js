@@ -92,7 +92,6 @@ function removeDuplicateValue(array1, array2) {
 }
 
 function _calcFixedCSSLength(fixedLengths) {
-    console.log(fixedLengths);
     return fixedLengths.length > 1
         ? `calc(${fixedLengths.join(' + ')})`
         : (fixedLengths[0] || '');
