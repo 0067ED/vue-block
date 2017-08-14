@@ -1,13 +1,7 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-        <!--
-        rows="[start] 400px [second] 200px [third] 100px [end]"
-        cols="100px 500px auto 100px"
-        pattern="header header header right, side main second right, side main second right">
-    -->
     <block class="example example-1"
-        rows="[start] 100px [second] 200px [third] 100px [end]"
+        rows="100px 200px 100px"
         cols="100px 300px auto 100px"
         pattern="header header test right, side main second right, side main second right">
         <div slot="header" class="area-1" :class="clazz" :style="style"></div>
@@ -18,6 +12,8 @@
         <div slot="second" class="area-6"></div>
         <div slot="test" class="area-7"></div>
     </block>
+    <pre><code>
+</code></pre>
 
     <block class="example example-2">
         <div slot="left" class="area-1 box"></div>
@@ -69,6 +65,8 @@ export default {
     text-align: center;
     color: #2c3e50;
     margin-top: 60px;
+    width: 960px;
+    margin: 0 auto;
 }
 
 .header,
