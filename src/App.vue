@@ -1,17 +1,21 @@
 <template>
-  <div id="app">
-    <example></example>
-  </div>
+    <div class="container">
+        <div class="readme" v-html="readme"></div>
+        <example></example>
+    </div>
 </template>
 
 <script>
 import 'highlight.js/styles/github-gist.css';
 import hl from 'highlight.js';
 import Example from './example';
+import readme from '../README.md';
+
 export default {
     name: 'app',
     data() {
         return {
+            readme,
             clazz: ['header1', 'header2'],
             style: {
                 opacity: 0.5
@@ -28,15 +32,41 @@ export default {
 </script>
 
 <style>
-#app {
+body {
+    margin: 0;
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    line-height: 2;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    text-align: center;
     color: #2c3e50;
-    margin-top: 60px;
+}
+h1 {
+    margin: 0;
+    line-height: 2;
+    font-size: 4em;
+}
+h2 {
+    margin: 0;
+    line-height: 2;
+    font-size: 2em;
+}
+.container {
     width: 960px;
     margin: 0 auto;
+    padding: 20px;
+}
+.readme blockquote {
+    margin: 0;
+    padding: 0 20px;
+    border-left: 2px solid #adb5bd;
+}
+.readme p {
+    margin: 0;
+}
+.readme pre {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #adb5bd;
 }
 
 .area-1 {

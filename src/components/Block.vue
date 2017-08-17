@@ -85,7 +85,7 @@ function renderDefault(h, context) {
 
     if (slots.middle) {
         clazz['block-middle-container'] = true;
-        vnodes.push(<div class="block-middle">{slots.middle}</div>);
+        vnodes.push(<div class="block-middle block-center">{slots.middle}</div>);
     }
 
     return <div class={clazz}>

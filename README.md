@@ -7,7 +7,7 @@
 Install with npm:
 
 ```
-npm install --save-dev webpack
+npm install --save-dev vue-block
 ```
 
 ## Usage

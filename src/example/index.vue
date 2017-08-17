@@ -14,6 +14,7 @@ export default {
     name: 'example',
     template: `
         <div class="examples">
+            <h1>Example</h1>
             ${components.join('')}
         </div>
     `
@@ -27,7 +28,7 @@ export default {
 
 .example {
     position: relative;
-    margin: 40px 40px 0;
+    margin: 20px 0 0 0;
     padding: 40px;
     border: 1px solid #adb5bd;
 }
@@ -38,7 +39,7 @@ export default {
     left: 0;
     z-index: 1;
     width: 100px;
-    height: 20px;
+    height: 30px;
     text-align: center;
     color: #adb5bd;
     border-bottom: 1px solid #adb5bd;
@@ -48,7 +49,7 @@ export default {
 .code {
     display: block;
     position: relative;
-    margin: 0 40px 40px;
+    margin: 0 0 20px 0;
     padding: 20px 40px;
     text-align: left;
     border: 1px solid #adb5bd;

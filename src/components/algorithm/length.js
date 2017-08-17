@@ -57,7 +57,7 @@ function divideLengthByType(lengths) {
         return results;
     }, typedLengths);
     // typedLengths.fixedString = getFixedLength(typedLengths.fixed, true);
-    typedLengths.baseFr = typedLengths.fr.reduce((count, len) => count + parseInt(len, 10), 0);
+    typedLengths.baseFr = typedLengths.fr.reduce((count, len) => count + parseInt(len.number, 10), 0);
     typedLengths.baseAuto = typedLengths.auto.length;
     return typedLengths;
 }
@@ -115,7 +115,11 @@ function calcCSSLength(lengths, base) {
 
     if (baseFree !== free) {
         // calc(fixed + (100% - basedFixed) * 1 / 3 )
-        return `calc(${fixed.join(' + ')} + (100% - ${baseFixed.join(' - ')}) * ${free} / ${baseFree})`
+        return baseFixed.length
+            ? fixed.length
+                ? `calc(${fixed.join(' + ')} + (100% - ${baseFixed.join(' - ')}) * ${free} / ${baseFree})`
+                : `calc((100% - ${baseFixed.join(' - ')}) * ${free} / ${baseFree})`
+            : `calc(100% * ${free} / ${baseFree})`;
     }
 
     // optimise for this case.
@@ -151,7 +155,7 @@ function calcCSSLength(lengths, base) {
  * @return {Object} length format.
  */
 export function parse(length) {
-    const r = /^([0-9\.]+)?([a-zA-Z]+)?/.exec(length);
+    const r = /^([0-9\.]+)?([a-zA-Z%]+)?/.exec(length);
     if (!r) {
         // illegal format
         // TODO
