@@ -1,6 +1,15 @@
 # vue-block
 
-> Helping you build css grid like layout system with the support of old browser like IE9.
+> A Vue plugin helping you build **CSS grid like layout system** with the support of old browser like IE9.
+
+## Feature
+
+**vue-block** can provide you:
+
+- CSS grid like layout system.
+- Really easy to use [API](.#api), especially for new Vue beginner.
+- Support IE9+ and other modern browser which support [CSS calc](http://caniuse.com/#search=calc).
+- [Functional component](https://vuejs.org/v2/guide/render-function.html#Functional-Components), which is statueless and instanceless.
 
 ## Install
 
@@ -90,10 +99,6 @@ For Example:
 </block>
 
 ```
-
-## Browser support
-
-IE9 and other modern browser which support [CSS calc](http://caniuse.com/#search=calc).
 
 ## Build Setup
 

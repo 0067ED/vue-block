@@ -1,7 +1,7 @@
 {
   "name": "vue-block",
   "version": "1.0.0",
-  "description": "Helping you build css grid like layout system.",
+  "description": "A Vue plugin helping you build **CSS grid like layout system** with the support of old browser like IE9.",
   "author": "zmmbreeze <zmmbreeze0825@gmail.com>",
   "keywords": ["Vue", "component", "css grid", "grid", "css", "layout"],
   "main": "dist/block.js",
