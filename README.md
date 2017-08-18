@@ -34,8 +34,9 @@ new Vue({
 Component Usage:
 
 ```javascript
-import Vue from 'vue';
+import 'vue-block/dist/block.css';
 import block from 'vue-block';
+import Vue from 'vue';
 
 new Vue({
     el: '#app',
