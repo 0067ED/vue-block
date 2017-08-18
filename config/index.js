@@ -10,7 +10,7 @@ module.exports = {
     docIndex: path.resolve(__dirname, '../docs/index.html'),
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsDocRoot: path.resolve(__dirname, '../docs'),
-    assetsSubDirectory: 'static',
+    assetsSubDirectory: '.',
     assetsPublicPath: '/',
     assetsDocPublicPath: '/vue-block/',
     productionSourceMap: true,

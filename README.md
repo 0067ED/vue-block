@@ -17,6 +17,7 @@ Basicly `vue-block` is a Vue plugin. Also you can use it as a Vue component.
 Plugin Usage:
 
 ```javascript
+import 'vue-block/dist/block.css';
 import block from 'vue-block';
 import Vue from 'vue';
 Vue.use(block);

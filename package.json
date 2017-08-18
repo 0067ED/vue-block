@@ -4,6 +4,12 @@
   "description": "Helping you build css grid like layout system.",
   "author": "zmmbreeze <zmmbreeze0825@gmail.com>",
   "keywords": ["Vue", "component", "css grid", "grid", "css", "layout"],
+  "main": "dist/block.js",
+  "files": [
+    "dist",
+    "src",
+    "packages"
+  ],
   "scripts": {
     "dev": "node build/dev-server.js",
     "start": "node build/dev-server.js",
