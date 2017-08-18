@@ -23,7 +23,7 @@
     }
     ```
 */
-
+import {splitBySpace} from './helper';
 
 function isInside(x, xStart, xEnd) {
     return (x >= xStart) && (x <= xEnd);
@@ -91,9 +91,8 @@ export function calcAreasByPattern(cellMap, pattern) {
         [ 'body', 'body', 'side' ]
     ]
     */
-    pattern = pattern.split(',').map((tmpl) => {
-        return tmpl.split(' ').filter((input) => !!input);
-    });
+    pattern = pattern.split(',').map(splitBySpace);
+    console.log(pattern);
 
     if (cellMap.length !== pattern.length || cellMap[0].length !== pattern[0].length) {
         throw new Error('[BLOCK] `template`, `rows`, `cols` not match. ');

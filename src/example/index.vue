@@ -1,5 +1,5 @@
 <script>
-const req = require.context('raw-loader!./', false, /\.html$/);
+const req = require.context('raw-loader!./', false, /^[^_]+\.html$/);
 const keys = req.keys().filter((key) => key !== './index.vue').sort();
 const components = keys.map((key) => {
     const html = req(key);

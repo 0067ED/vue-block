@@ -24,7 +24,7 @@
     ]
     ```
 */
-
+import {splitBySpace} from './helper';
 
 /**
  * Parse input
@@ -36,7 +36,7 @@
  *                  `[{start: 'start', end: 'second' length: '100px'}, ...]`
  */
 function parseRowsOrCols(items) {
-    items = items.split(' ').filter((item) => !!item);
+    items = splitBySpace(items);
     const lastItemIndex = items.length - 1;
     return items.reduce(function (results, item, index) {
         const r = item.match(/^\[([^\]]+)\]$/);

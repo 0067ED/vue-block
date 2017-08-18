@@ -134,7 +134,12 @@ export default {
     margin: 0;
     padding: 0;
 }
-.block-row > .block-area {
+.block-area {
+    box-sizing: border-box;
+}
+.block-col.block-area,
+.block-row.block-area {
+    box-sizing: content-box;
 }
 .block-col {
     text-align: left;
@@ -142,9 +147,6 @@ export default {
 .block-col > .block {
     display: inline-block;
     vertical-align: top;
-}
-.block-area {
-
 }
 
 

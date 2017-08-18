@@ -69,28 +69,55 @@ h2 {
     border: 1px solid #adb5bd;
 }
 
+.area-0 {
+    background: #adb5bd;
+}
+.outline-0 {
+    border: 1px solid #adb5bd;
+}
 .area-1 {
     background: #ff6b6b;
+}
+.outline-1 {
+    border: 1px solid #ff6b6b;
 }
 .area-2 {
     background: #f06595;
 }
+.outline-2 {
+    border: 1px solid #f06595;
+}
 .area-3 {
     background: #cc5de8;
 }
+.outline-3 {
+    border: 1px solid #cc5de8;
+}
 .area-4 {
     background: #845ef7;
+}
+.outline-4 {
+    border: 1px solid #845ef7;
 }
 .area-5 {
     height: 50%;
     background: #5c7cfa;
 }
+.outline-5 {
+    border: 1px solid #5c7cfa;
+}
 .area-6 {
     height: 50%;
     background: #e67700;
 }
+.outline-6 {
+    border: 1px solid #adb5bd;
+}
 .area-7 {
     background: #5c940d;
+}
+.outline-7 {
+    border: 1px solid #adb5bd;
 }
 .box {
     width: 40px;
