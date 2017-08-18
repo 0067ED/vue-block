@@ -14,7 +14,6 @@ export default {
     name: 'example',
     template: `
         <div class="examples">
-            <h1>Example</h1>
             ${components.join('')}
         </div>
     `
@@ -22,8 +21,8 @@ export default {
 </script>
 
 <style>
-.examples {
-
+.examples h1 {
+    text-align: left;
 }
 
 .example {

@@ -93,7 +93,7 @@ For Example:
 
 ## Browser support
 
-IE9 and other modern browser support [CSS calc](http://caniuse.com/#search=calc).
+IE9 and other modern browser which support [CSS calc](http://caniuse.com/#search=calc).
 
 ## Build Setup
 
