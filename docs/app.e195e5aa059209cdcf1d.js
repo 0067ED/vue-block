@@ -141,7 +141,6 @@ function calcAreasByPattern(cellMap, pattern) {
     ]
     */
     pattern = pattern.split(',').map(__WEBPACK_IMPORTED_MODULE_0__helper__["a" /* splitBySpace */]);
-    console.log(pattern);
 
     if (cellMap.length !== pattern.length || cellMap[0].length !== pattern[0].length) {
         throw new Error('[BLOCK] `template`, `rows`, `cols` not match. ');
@@ -803,7 +802,7 @@ function calcLines(cellMap, areas, isRow) {
 /***/ 234:
 /***/ (function(module, exports) {
 
-module.exports = "<h1 id=\"vue-block\">vue-block</h1>\n<blockquote>\n<p>Helping you build css grid like layout system with the support of old browser like IE9.</p>\n</blockquote>\n<h2 id=\"install\">Install</h2>\n<p>Install with npm:</p>\n<pre><code>npm install --save-dev vue-block\n</code></pre><h2 id=\"usage\">Usage</h2>\n<p>Basicly <code>vue-block</code> is a Vue plugin. Also you can use it as a Vue component.</p>\n<p>Plugin Usage:</p>\n<pre><code class=\"lang-javascript\">import block from &#39;vue-block&#39;;\nimport Vue from &#39;vue&#39;;\nVue.use(block);\n\nnew Vue({\n    el: &#39;#app&#39;,\n    template: `&lt;block&gt;\n        &lt;div slot=&quot;left&quot;&gt;&lt;div&gt;\n        &lt;div slot=&quot;right&quot;&gt;&lt;div&gt;\n    &lt;/block&gt;`\n});\n</code></pre>\n<p>Component Usage:</p>\n<pre><code class=\"lang-javascript\">import Vue from &#39;vue&#39;;\nimport block from &#39;vue-block&#39;;\n\nnew Vue({\n    el: &#39;#app&#39;,\n    template: `&lt;block&gt;\n        &lt;div slot=&quot;left&quot;&gt;&lt;div&gt;\n        &lt;div slot=&quot;right&quot;&gt;&lt;div&gt;\n    &lt;/block&gt;`,\n    components: { block }\n});\n</code></pre>\n<h2 id=\"api\">API</h2>\n<p><code>vue-block</code>&#39;s API is provide by all kinds of <a href=\"https://vuejs.org/v2/guide/components.html#Named-Slots\">vue slot</a>. It provide some default slot to handle the basic layout function.</p>\n<p>For Example:</p>\n<pre><code class=\"lang-html\">&lt;!-- left and right --&gt;\n&lt;block&gt;\n    &lt;div slot=&quot;left&quot;&gt;left&lt;div&gt;\n    &lt;div slot=&quot;right&quot;&gt;right&lt;div&gt;\n&lt;/block&gt;\n\n&lt;!-- horizontal center --&gt;\n&lt;block&gt;\n    &lt;div slot=&quot;center&quot;&gt;center 1&lt;div&gt;\n    &lt;div slot=&quot;center&quot;&gt;center 2&lt;div&gt;\n&lt;/block&gt;\n\n&lt;!-- middle of the block, both vertical and horizontal --&gt;\n&lt;block&gt;\n    &lt;div slot=&quot;middle&quot;&gt;middle 1&lt;div&gt;\n    &lt;div slot=&quot;middle&quot;&gt;middle 2&lt;div&gt;\n&lt;/block&gt;\n</code></pre>\n<p>And most excited thing is <code>vue-block</code> support css grid like layout system.</p>\n<p>For Example:</p>\n<pre><code class=\"lang-html\">&lt;block\n    cols=&quot;100px 2fr 1fr&quot;\n    rows=&quot;100px 200px 100px&quot;\n    pattern=&quot;header header right, side main right, side main right&quot;&gt;\n    &lt;div slot=&quot;header&quot;&gt;&lt;/div&gt;\n    &lt;div slot=&quot;side&quot;&gt;&lt;/div&gt;\n    &lt;div slot=&quot;main&quot;&gt;&lt;/div&gt;\n    &lt;div slot=&quot;right&quot;&gt;&lt;/div&gt;\n&lt;/block&gt;\n</code></pre>\n<h2 id=\"browser-support\">Browser support</h2>\n<p>IE9 and other modern browser support <a href=\"http://caniuse.com/#search=calc\">CSS calc</a>.</p>\n<h2 id=\"build-setup\">Build Setup</h2>\n<pre><code class=\"lang-bash\"># install dependencies\nnpm install\n\n# serve with hot reload at localhost:8080\nnpm run dev\n\n# build for production with minification\nnpm run build\n\n# build for doc\nnpm run doc\n</code></pre>\n";
+module.exports = "<h1 id=\"vue-block\">vue-block</h1>\n<blockquote>\n<p>A Vue plugin helping you build <strong>CSS grid like layout system</strong> with the support of old browser like IE9.</p>\n</blockquote>\n<h2 id=\"feature\">Feature</h2>\n<p><strong>vue-block</strong> can provide you:</p>\n<ul>\n<li>CSS grid like layout system.</li>\n<li>Really easy to use <a href=\".#api\">API</a>, especially for new Vue beginner.</li>\n<li>Support IE9+ and other modern browser which support <a href=\"http://caniuse.com/#search=calc\">CSS calc</a>.</li>\n<li><a href=\"https://vuejs.org/v2/guide/render-function.html#Functional-Components\">Functional component</a>, which is statueless and instanceless.</li>\n</ul>\n<h2 id=\"install\">Install</h2>\n<p>Install with npm:</p>\n<pre><code>npm install --save-dev vue-block\n</code></pre><h2 id=\"usage\">Usage</h2>\n<p>Basicly <code>vue-block</code> is a Vue plugin. Also you can use it as a Vue component.</p>\n<p>Plugin Usage:</p>\n<pre><code class=\"lang-javascript\">import &#39;vue-block/dist/block.css&#39;;\nimport block from &#39;vue-block&#39;;\nimport Vue from &#39;vue&#39;;\nVue.use(block);\n\nnew Vue({\n    el: &#39;#app&#39;,\n    template: `&lt;block&gt;\n        &lt;div slot=&quot;left&quot;&gt;&lt;div&gt;\n        &lt;div slot=&quot;right&quot;&gt;&lt;div&gt;\n    &lt;/block&gt;`\n});\n</code></pre>\n<p>Component Usage:</p>\n<pre><code class=\"lang-javascript\">import &#39;vue-block/dist/block.css&#39;;\nimport block from &#39;vue-block&#39;;\nimport Vue from &#39;vue&#39;;\n\nnew Vue({\n    el: &#39;#app&#39;,\n    template: `&lt;block&gt;\n        &lt;div slot=&quot;left&quot;&gt;&lt;div&gt;\n        &lt;div slot=&quot;right&quot;&gt;&lt;div&gt;\n    &lt;/block&gt;`,\n    components: { block }\n});\n</code></pre>\n<h2 id=\"api\">API</h2>\n<p><code>vue-block</code>&#39;s API is provide by all kinds of <a href=\"https://vuejs.org/v2/guide/components.html#Named-Slots\">vue slot</a>. It provide some default slot to handle the basic layout function.</p>\n<p>For Example:</p>\n<pre><code class=\"lang-html\">&lt;!-- left and right --&gt;\n&lt;block&gt;\n    &lt;div slot=&quot;left&quot;&gt;left&lt;div&gt;\n    &lt;div slot=&quot;right&quot;&gt;right&lt;div&gt;\n&lt;/block&gt;\n\n&lt;!-- horizontal center --&gt;\n&lt;block&gt;\n    &lt;div slot=&quot;center&quot;&gt;center 1&lt;div&gt;\n    &lt;div slot=&quot;center&quot;&gt;center 2&lt;div&gt;\n&lt;/block&gt;\n\n&lt;!-- middle of the block, both vertical and horizontal --&gt;\n&lt;block&gt;\n    &lt;div slot=&quot;middle&quot;&gt;middle 1&lt;div&gt;\n    &lt;div slot=&quot;middle&quot;&gt;middle 2&lt;div&gt;\n&lt;/block&gt;\n</code></pre>\n<p>And most excited thing is <code>vue-block</code> support css grid like layout system.</p>\n<p>For Example:</p>\n<pre><code class=\"lang-html\">&lt;block\n    cols=&quot;100px 2fr 1fr&quot;\n    rows=&quot;100px 200px 100px&quot;\n    pattern=&quot;header header right, side main right, side main right&quot;&gt;\n    &lt;div slot=&quot;header&quot;&gt;&lt;/div&gt;\n    &lt;div slot=&quot;side&quot;&gt;&lt;/div&gt;\n    &lt;div slot=&quot;main&quot;&gt;&lt;/div&gt;\n    &lt;div slot=&quot;right&quot;&gt;&lt;/div&gt;\n&lt;/block&gt;\n</code></pre>\n<h2 id=\"build-setup\">Build Setup</h2>\n<pre><code class=\"lang-bash\"># install dependencies\nnpm install\n\n# serve with hot reload at localhost:8080\nnpm run dev\n\n# build for production with minification\nnpm run build\n\n# build for doc\nnpm run doc\n</code></pre>\n";
 
 /***/ }),
 
@@ -964,13 +963,97 @@ module.exports = Component.exports
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "container"
-  }, [_c('div', {
+  }, [_vm._m(0), _vm._v(" "), _c('block', {
+    staticClass: "logo",
+    attrs: {
+      "cols": "1fr 1fr 1fr",
+      "rows": "1fr 1fr 1fr",
+      "pattern": "a b c, d e f, g h i"
+    }
+  }, [_c('span', {
+    slot: "a"
+  }), _vm._v(" "), _c('span', {
+    slot: "b"
+  }), _vm._v(" "), _c('span', {
+    slot: "c"
+  }), _vm._v(" "), _c('span', {
+    slot: "d"
+  }), _vm._v(" "), _c('span', {
+    slot: "e"
+  }), _vm._v(" "), _c('span', {
+    slot: "f"
+  }), _vm._v(" "), _c('span', {
+    slot: "g"
+  }), _vm._v(" "), _c('span', {
+    slot: "h"
+  }), _vm._v(" "), _c('span', {
+    slot: "i"
+  })]), _vm._v(" "), _c('h1', [_vm._v("vue-block")]), _vm._v(" "), _c('block', {
+    staticClass: "menu"
+  }, [_c('a', {
+    class: _vm.selected === 0 ? 'selected' : '',
+    attrs: {
+      "href": "###"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.switchMenu(0)
+      }
+    },
+    slot: "center"
+  }, [_vm._v("Document")]), _vm._v(" "), _c('a', {
+    class: _vm.selected === 1 ? 'selected' : '',
+    attrs: {
+      "href": "###"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.switchMenu(1)
+      }
+    },
+    slot: "center"
+  }, [_vm._v("Example")])]), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.selected === 0),
+      expression: "selected === 0"
+    }],
     staticClass: "readme",
     domProps: {
       "innerHTML": _vm._s(_vm.readme)
     }
-  }), _vm._v(" "), _c('example')], 1)
-},staticRenderFns: []}
+  }), _vm._v(" "), _c('example', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.selected === 1),
+      expression: "selected === 1"
+    }]
+  })], 1)
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('a', {
+    attrs: {
+      "href": "https://github.com/0067ED/vue-block/",
+      "target": "_blank"
+    }
+  }, [_c('img', {
+    staticStyle: {
+      "position": "fixed",
+      "top": "0",
+      "right": "0",
+      "z-index": "999",
+      "border": "0"
+    },
+    attrs: {
+      "alt": "Fork on GitHub",
+      "src": "https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67",
+      "data-canonical-src": "https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"
+    }
+  })])
+}]}
 
 /***/ }),
 
@@ -1051,6 +1134,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1061,12 +1169,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     name: 'app',
     data: function data() {
         return {
-            readme: __WEBPACK_IMPORTED_MODULE_3__README_md___default.a,
+            selected: 0,
+            readme: __WEBPACK_IMPORTED_MODULE_3__README_md___default.a.replace(/<h1[^>]*>[^<]+<\/h1>/, ''),
             clazz: ['header1', 'header2'],
             style: {
                 opacity: 0.5
             }
         };
+    },
+
+    methods: {
+        switchMenu: function switchMenu(target) {
+            this.selected = target;
+        }
     },
     mounted: function mounted() {
         __WEBPACK_IMPORTED_MODULE_1_highlight_js___default.a.initHighlightingOnLoad();
@@ -1244,7 +1359,7 @@ var components = keys.map(function (key) {
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'example',
-    template: '\n        <div class="examples">\n            <h1>Example</h1>\n            ' + components.join('') + '\n        </div>\n    '
+    template: '\n        <div class="examples">\n            ' + components.join('') + '\n        </div>\n    '
 });
 
 /***/ }),
@@ -1403,4 +1518,4 @@ function splitBySpace(input) {
 /***/ })
 
 },[25]);
-//# sourceMappingURL=app.590754275ca1f2fefa6b.js.map
+//# sourceMappingURL=app.e195e5aa059209cdcf1d.js.map
