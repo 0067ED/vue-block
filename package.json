@@ -1,9 +1,9 @@
 {
   "name": "vue-block",
   "version": "1.0.0",
-  "description": "A Vue.js component help you build grid like layout.",
+  "description": "Helping you build css grid like layout system.",
   "author": "zmmbreeze <zmmbreeze0825@gmail.com>",
-  "private": true,
+  "keywords": ["Vue", "component", "css grid", "grid", "css", "layout"],
   "scripts": {
     "dev": "node build/dev-server.js",
     "start": "node build/dev-server.js",
