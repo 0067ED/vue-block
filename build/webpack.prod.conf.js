@@ -27,7 +27,6 @@ var webpackConfig = merge(baseWebpackConfig, {
   output: {
     library: 'block',
     libraryTarget: 'umd',
-    auxiliaryComment: "Test Comment",
     path: config.build.assetsRoot,
     filename: utils.assetsPath('[name].js')
   },
