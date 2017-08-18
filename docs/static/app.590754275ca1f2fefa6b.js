@@ -1,10 +1,10 @@
 webpackJsonp([1],{
 
-/***/ 15:
+/***/ 16:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Block__ = __webpack_require__(239);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Block__ = __webpack_require__(242);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Block___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_Block__);
 
 
@@ -18,17 +18,17 @@ __WEBPACK_IMPORTED_MODULE_0__components_Block___default.a.version = '1.0.0';
 
 /***/ }),
 
-/***/ 16:
+/***/ 17:
 /***/ (function(module, exports, __webpack_require__) {
 
 function injectStyle (ssrContext) {
-  __webpack_require__(52)
+  __webpack_require__(53)
 }
 var Component = __webpack_require__(4)(
   /* script */
-  __webpack_require__(25),
+  __webpack_require__(26),
   /* template */
-  __webpack_require__(241),
+  __webpack_require__(244),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -42,11 +42,12 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 18:
+/***/ 19:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = calcAreasByPattern;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helper__ = __webpack_require__(6);
 /*
 
     Area format
@@ -72,6 +73,7 @@ module.exports = Component.exports
     }
     ```
 */
+
 
 function isInside(x, xStart, xEnd) {
     return x >= xStart && x <= xEnd;
@@ -138,11 +140,8 @@ function calcAreasByPattern(cellMap, pattern) {
         [ 'body', 'body', 'side' ]
     ]
     */
-    pattern = pattern.split(',').map(function (tmpl) {
-        return tmpl.split(' ').filter(function (input) {
-            return !!input;
-        });
-    });
+    pattern = pattern.split(',').map(__WEBPACK_IMPORTED_MODULE_0__helper__["a" /* splitBySpace */]);
+    console.log(pattern);
 
     if (cellMap.length !== pattern.length || cellMap[0].length !== pattern[0].length) {
         throw new Error('[BLOCK] `template`, `rows`, `cols` not match. ');
@@ -177,14 +176,14 @@ function calcAreasByPattern(cellMap, pattern) {
 
 /***/ }),
 
-/***/ 19:
+/***/ 20:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = calcDiv;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_create__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_create__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_create___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_create__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__line__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__line__ = __webpack_require__(23);
 
 /*
 
@@ -487,16 +486,16 @@ function calcDiv(cellMap, areas) {
 
 /***/ }),
 
-/***/ 20:
+/***/ 21:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["b"] = layout;
 /* harmony export (immutable) */ __webpack_exports__["a"] = calcCSS;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cell__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__area__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__div__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__length__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__area__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__div__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__length__ = __webpack_require__(22);
 
 
 
@@ -525,13 +524,13 @@ function calcCSS(div) {
 
 /***/ }),
 
-/***/ 21:
+/***/ 22:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export parse */
 /* harmony export (immutable) */ __webpack_exports__["a"] = calcCSSWidthOrHeight;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_create__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_create__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_create___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_create__);
 
 /*
@@ -727,7 +726,7 @@ function calcCSSWidthOrHeight(div, widthOrHeight) {
 
 /***/ }),
 
-/***/ 22:
+/***/ 23:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -801,7 +800,49 @@ function calcLines(cellMap, areas, isRow) {
 
 /***/ }),
 
-/***/ 23:
+/***/ 234:
+/***/ (function(module, exports) {
+
+module.exports = "<h1 id=\"vue-block\">vue-block</h1>\n<blockquote>\n<p>Helping you build css grid like layout system with the support of old browser like IE9.</p>\n</blockquote>\n<h2 id=\"install\">Install</h2>\n<p>Install with npm:</p>\n<pre><code>npm install --save-dev vue-block\n</code></pre><h2 id=\"usage\">Usage</h2>\n<p>Basicly <code>vue-block</code> is a Vue plugin. Also you can use it as a Vue component.</p>\n<p>Plugin Usage:</p>\n<pre><code class=\"lang-javascript\">import block from &#39;vue-block&#39;;\nimport Vue from &#39;vue&#39;;\nVue.use(block);\n\nnew Vue({\n    el: &#39;#app&#39;,\n    template: `&lt;block&gt;\n        &lt;div slot=&quot;left&quot;&gt;&lt;div&gt;\n        &lt;div slot=&quot;right&quot;&gt;&lt;div&gt;\n    &lt;/block&gt;`\n});\n</code></pre>\n<p>Component Usage:</p>\n<pre><code class=\"lang-javascript\">import Vue from &#39;vue&#39;;\nimport block from &#39;vue-block&#39;;\n\nnew Vue({\n    el: &#39;#app&#39;,\n    template: `&lt;block&gt;\n        &lt;div slot=&quot;left&quot;&gt;&lt;div&gt;\n        &lt;div slot=&quot;right&quot;&gt;&lt;div&gt;\n    &lt;/block&gt;`,\n    components: { block }\n});\n</code></pre>\n<h2 id=\"api\">API</h2>\n<p><code>vue-block</code>&#39;s API is provide by all kinds of <a href=\"https://vuejs.org/v2/guide/components.html#Named-Slots\">vue slot</a>. It provide some default slot to handle the basic layout function.</p>\n<p>For Example:</p>\n<pre><code class=\"lang-html\">&lt;!-- left and right --&gt;\n&lt;block&gt;\n    &lt;div slot=&quot;left&quot;&gt;left&lt;div&gt;\n    &lt;div slot=&quot;right&quot;&gt;right&lt;div&gt;\n&lt;/block&gt;\n\n&lt;!-- horizontal center --&gt;\n&lt;block&gt;\n    &lt;div slot=&quot;center&quot;&gt;center 1&lt;div&gt;\n    &lt;div slot=&quot;center&quot;&gt;center 2&lt;div&gt;\n&lt;/block&gt;\n\n&lt;!-- middle of the block, both vertical and horizontal --&gt;\n&lt;block&gt;\n    &lt;div slot=&quot;middle&quot;&gt;middle 1&lt;div&gt;\n    &lt;div slot=&quot;middle&quot;&gt;middle 2&lt;div&gt;\n&lt;/block&gt;\n</code></pre>\n<p>And most excited thing is <code>vue-block</code> support css grid like layout system.</p>\n<p>For Example:</p>\n<pre><code class=\"lang-html\">&lt;block\n    cols=&quot;100px 2fr 1fr&quot;\n    rows=&quot;100px 200px 100px&quot;\n    pattern=&quot;header header right, side main right, side main right&quot;&gt;\n    &lt;div slot=&quot;header&quot;&gt;&lt;/div&gt;\n    &lt;div slot=&quot;side&quot;&gt;&lt;/div&gt;\n    &lt;div slot=&quot;main&quot;&gt;&lt;/div&gt;\n    &lt;div slot=&quot;right&quot;&gt;&lt;/div&gt;\n&lt;/block&gt;\n</code></pre>\n<h2 id=\"browser-support\">Browser support</h2>\n<p>IE9 and other modern browser support <a href=\"http://caniuse.com/#search=calc\">CSS calc</a>.</p>\n<h2 id=\"build-setup\">Build Setup</h2>\n<pre><code class=\"lang-bash\"># install dependencies\nnpm install\n\n# serve with hot reload at localhost:8080\nnpm run dev\n\n# build for production with minification\nnpm run build\n\n# build for doc\nnpm run doc\n</code></pre>\n";
+
+/***/ }),
+
+/***/ 235:
+/***/ (function(module, exports) {
+
+module.exports = "<block\n    rows=\"100px 200px 100px\"\n    cols=\"100px 300px auto 100px\"\n    pattern=\"header header test right, side main second right, side main second right\">\n    <div slot=\"header\" class=\"area-1\"></div>\n    <div slot=\"side\" class=\"area-2\"></div>\n    <div slot=\"main\" class=\"area-3\"></div>\n    <div slot=\"right\" class=\"area-4\"></div>\n    <div slot=\"second\" class=\"area-5\"></div>\n    <div slot=\"second\" class=\"area-6\"></div>\n    <div slot=\"test\" class=\"area-7\"></div>\n</block>\n"
+
+/***/ }),
+
+/***/ 236:
+/***/ (function(module, exports) {
+
+module.exports = "<block>\n    <div slot=\"left\" class=\"area-1 box\"></div>\n    <div slot=\"left\" class=\"area-3 box\"></div>\n    <div slot=\"left\" class=\"area-5 box\"></div>\n    <div slot=\"left\" class=\"area-2 box\"></div>\n    <div slot=\"right\" class=\"area-4 box\"></div>\n</block>\n"
+
+/***/ }),
+
+/***/ 237:
+/***/ (function(module, exports) {
+
+module.exports = "<block>\n    <div slot=\"left\" class=\"area-1 box\"></div>\n    <div slot=\"left\" class=\"area-3 box\"></div>\n    <div slot=\"right\" class=\"area-5 box\"></div>\n    <div slot=\"center\" class=\"area-2 box\"></div>\n    <div slot=\"center\" class=\"area-4 box\"></div>\n</block>\n"
+
+/***/ }),
+
+/***/ 238:
+/***/ (function(module, exports) {
+
+module.exports = "<block>\n    <div slot=\"center\" class=\"area-1 box\"></div>\n    <div slot=\"center\" class=\"area-2 box\"></div>\n    <div slot=\"center\" class=\"area-3 box\"></div>\n</block>\n"
+
+/***/ }),
+
+/***/ 239:
+/***/ (function(module, exports) {
+
+module.exports = "<block style=\"height: 200px;\">\n    <div slot=\"middle\" class=\"area-1 box\"></div>\n</block>\n"
+
+/***/ }),
+
+/***/ 24:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -855,104 +896,25 @@ function applyStyle(vnodes, style) {
 
 /***/ }),
 
-/***/ 233:
-/***/ (function(module, exports) {
-
-module.exports = "<h1 id=\"vue-block\">vue-block</h1>\n<blockquote>\n<p>Helping you build css grid like layout system with the support of old browser like IE9.</p>\n</blockquote>\n<h2 id=\"install\">Install</h2>\n<p>Install with npm:</p>\n<pre><code>npm install --save-dev vue-block\n</code></pre><h2 id=\"usage\">Usage</h2>\n<p>Basicly <code>vue-block</code> is a Vue plugin. Also you can use it as a Vue component.</p>\n<p>Plugin Usage:</p>\n<pre><code class=\"lang-javascript\">import block from &#39;vue-block&#39;;\nimport Vue from &#39;vue&#39;;\nVue.use(block);\n\nnew Vue({\n    el: &#39;#app&#39;,\n    template: `&lt;block&gt;\n        &lt;div slot=&quot;left&quot;&gt;&lt;div&gt;\n        &lt;div slot=&quot;right&quot;&gt;&lt;div&gt;\n    &lt;/block&gt;`\n});\n</code></pre>\n<p>Component Usage:</p>\n<pre><code class=\"lang-javascript\">import Vue from &#39;vue&#39;;\nimport block from &#39;vue-block&#39;;\n\nnew Vue({\n    el: &#39;#app&#39;,\n    template: `&lt;block&gt;\n        &lt;div slot=&quot;left&quot;&gt;&lt;div&gt;\n        &lt;div slot=&quot;right&quot;&gt;&lt;div&gt;\n    &lt;/block&gt;`,\n    components: { block }\n});\n</code></pre>\n<h2 id=\"api\">API</h2>\n<p><code>vue-block</code>&#39;s API is provide by all kinds of <a href=\"https://vuejs.org/v2/guide/components.html#Named-Slots\">vue slot</a>. It provide some default slot to handle the basic layout function.</p>\n<p>For Example:</p>\n<pre><code class=\"lang-html\">&lt;!-- left and right --&gt;\n&lt;block&gt;\n    &lt;div slot=&quot;left&quot;&gt;left&lt;div&gt;\n    &lt;div slot=&quot;right&quot;&gt;right&lt;div&gt;\n&lt;/block&gt;\n\n&lt;!-- horizontal center --&gt;\n&lt;block&gt;\n    &lt;div slot=&quot;center&quot;&gt;center 1&lt;div&gt;\n    &lt;div slot=&quot;center&quot;&gt;center 2&lt;div&gt;\n&lt;/block&gt;\n\n&lt;!-- middle of the block, both vertical and horizontal --&gt;\n&lt;block&gt;\n    &lt;div slot=&quot;middle&quot;&gt;middle 1&lt;div&gt;\n    &lt;div slot=&quot;middle&quot;&gt;middle 2&lt;div&gt;\n&lt;/block&gt;\n</code></pre>\n<p>And most excited thing is <code>vue-block</code> support css grid like layout system.</p>\n<p>For Example:</p>\n<pre><code class=\"lang-html\">&lt;block\n    cols=&quot;100px 2fr 1fr&quot;\n    rows=&quot;100px 200px 100px&quot;\n    pattern=&quot;header header right, side main right, side main right&quot;&gt;\n    &lt;div slot=&quot;header&quot;&gt;&lt;/div&gt;\n    &lt;div slot=&quot;side&quot;&gt;&lt;/div&gt;\n    &lt;div slot=&quot;main&quot;&gt;&lt;/div&gt;\n    &lt;div slot=&quot;right&quot;&gt;&lt;/div&gt;\n&lt;/block&gt;\n</code></pre>\n<h2 id=\"browser-support\">Browser support</h2>\n<p>IE9 and other modern browser support <a href=\"http://caniuse.com/#search=calc\">CSS calc</a>.</p>\n<h2 id=\"build-setup\">Build Setup</h2>\n<pre><code class=\"lang-bash\"># install dependencies\nnpm install\n\n# serve with hot reload at localhost:8080\nnpm run dev\n\n# build for production with minification\nnpm run build\n\n# build for doc\nnpm run doc\n</code></pre>\n";
-
-/***/ }),
-
-/***/ 234:
-/***/ (function(module, exports) {
-
-module.exports = "<block\n    rows=\"100px 200px 100px\"\n    cols=\"100px 300px auto 100px\"\n    pattern=\"header header test right, side main second right, side main second right\">\n    <div slot=\"header\" class=\"area-1\"></div>\n    <div slot=\"side\" class=\"area-2\"></div>\n    <div slot=\"main\" class=\"area-3\"></div>\n    <div slot=\"right\" class=\"area-4\"></div>\n    <div slot=\"second\" class=\"area-5\"></div>\n    <div slot=\"second\" class=\"area-6\"></div>\n    <div slot=\"test\" class=\"area-7\"></div>\n</block>\n"
-
-/***/ }),
-
-/***/ 235:
-/***/ (function(module, exports) {
-
-module.exports = "<block>\n    <div slot=\"left\" class=\"area-1 box\"></div>\n    <div slot=\"left\" class=\"area-3 box\"></div>\n    <div slot=\"left\" class=\"area-5 box\"></div>\n    <div slot=\"left\" class=\"area-2 box\"></div>\n    <div slot=\"right\" class=\"area-4 box\"></div>\n</block>\n"
-
-/***/ }),
-
-/***/ 236:
-/***/ (function(module, exports) {
-
-module.exports = "<block>\n    <div slot=\"left\" class=\"area-1 box\"></div>\n    <div slot=\"left\" class=\"area-3 box\"></div>\n    <div slot=\"right\" class=\"area-5 box\"></div>\n    <div slot=\"center\" class=\"area-2 box\"></div>\n    <div slot=\"center\" class=\"area-4 box\"></div>\n</block>\n"
-
-/***/ }),
-
-/***/ 237:
-/***/ (function(module, exports) {
-
-module.exports = "<block>\n    <div slot=\"center\" class=\"area-1 box\"></div>\n    <div slot=\"center\" class=\"area-2 box\"></div>\n    <div slot=\"center\" class=\"area-3 box\"></div>\n</block>\n"
-
-/***/ }),
-
-/***/ 238:
-/***/ (function(module, exports) {
-
-module.exports = "<block style=\"height: 200px;\">\n    <div slot=\"middle\" class=\"area-1 box\"></div>\n</block>\n"
-
-/***/ }),
-
-/***/ 239:
-/***/ (function(module, exports, __webpack_require__) {
-
-function injectStyle (ssrContext) {
-  __webpack_require__(54)
-}
-var Component = __webpack_require__(4)(
-  /* script */
-  __webpack_require__(26),
-  /* template */
-  null,
-  /* styles */
-  injectStyle,
-  /* scopeId */
-  null,
-  /* moduleIdentifier (server only) */
-  null
-)
-
-module.exports = Component.exports
-
-
-/***/ }),
-
-/***/ 24:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__App__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__App___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__App__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__index__ = __webpack_require__(15);
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-
-
-
-
-__WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].config.productionTip = false;
-__WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].use(__WEBPACK_IMPORTED_MODULE_2__index__["a" /* default */]);
-
-/* eslint-disable no-new */
-new __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */]({
-  el: '#app',
-  template: '<App/>',
-  components: { App: __WEBPACK_IMPORTED_MODULE_1__App___default.a }
-});
-
-/***/ }),
-
 /***/ 240:
+/***/ (function(module, exports) {
+
+module.exports = "<block\n    cols=\"100px auto\"\n    rows=\"50px auto\"\n    pattern=\"img name, img description\"\n    style=\"height:100px;\"\n    class=\"outline-0\">\n    <block slot=\"img\" style=\"border-right:none;\">\n        <img src=\"https://avatars1.githubusercontent.com/u/249872?v=4&s=460\"\n            slot=\"middle\"\n            style=\"width:60px; height:60px; border-radius:60px;\"></img>\n    </block>\n    <h1 slot=\"name\" style=\"padding-top:20px; font-size:1em; border-bottom:none;\">MZhou</h1>\n    <p slot=\"description\">\n        Frontend developer, Creator of lining.js, vue-block and octocard. And other good stuff.\n        <a href=\"https://github.com/zmmbreeze\"></a>\n    </p>\n</block>\n"
+
+/***/ }),
+
+/***/ 241:
+/***/ (function(module, exports) {
+
+module.exports = "<block\n    cols=\"150px 1fr 150px\"\n    rows=\"50px 1fr 30px\"\n    pattern=\"header header header, navigation main ads, footer footer footer\"\n    style=\"height: 300px;\"\n    class=\"outline-0\">\n    <block slot=\"header\" class=\"area-0\"></block>\n    <block slot=\"navigation\" class=\"area-1\"></block>\n    <block slot=\"main\" class=\"area-2\"></block>\n    <block slot=\"ads\" class=\"area-3\"></block>\n    <block slot=\"footer\" class=\"area-4\"></block>\n</block>\n"
+
+/***/ }),
+
+/***/ 242:
 /***/ (function(module, exports, __webpack_require__) {
 
 function injectStyle (ssrContext) {
-  __webpack_require__(53)
+  __webpack_require__(55)
 }
 var Component = __webpack_require__(4)(
   /* script */
@@ -972,7 +934,31 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 241:
+/***/ 243:
+/***/ (function(module, exports, __webpack_require__) {
+
+function injectStyle (ssrContext) {
+  __webpack_require__(54)
+}
+var Component = __webpack_require__(4)(
+  /* script */
+  __webpack_require__(28),
+  /* template */
+  null,
+  /* styles */
+  injectStyle,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 244:
 /***/ (function(module, exports) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -988,15 +974,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 
 /***/ }),
 
-/***/ 244:
+/***/ 247:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./0-grid.html": 234,
-	"./1-left-right.html": 235,
-	"./2-left-right-center.html": 236,
-	"./3-center.html": 237,
-	"./4-middle.html": 238
+	"./0-grid.html": 235,
+	"./1-left-right.html": 236,
+	"./2-left-right-center.html": 237,
+	"./3-center.html": 238,
+	"./4-middle.html": 239,
+	"./5-inner.html": 240,
+	"./6-holygrail.html": 241
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -1012,7 +1000,7 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 244;
+webpackContext.id = 247;
 
 /***/ }),
 
@@ -1021,13 +1009,40 @@ webpackContext.id = 244;
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_highlight_js_styles_github_gist_css__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__App__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__App___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__App__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__index__ = __webpack_require__(16);
+// The Vue build version to load with the `import` command
+// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+
+
+
+
+__WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].config.productionTip = false;
+__WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].use(__WEBPACK_IMPORTED_MODULE_2__index__["a" /* default */]);
+
+/* eslint-disable no-new */
+new __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */]({
+  el: '#app',
+  template: '<App/>',
+  components: { App: __WEBPACK_IMPORTED_MODULE_1__App___default.a }
+});
+
+/***/ }),
+
+/***/ 26:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_highlight_js_styles_github_gist_css__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_highlight_js_styles_github_gist_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_highlight_js_styles_github_gist_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_highlight_js__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_highlight_js__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_highlight_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_highlight_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__example__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__example__ = __webpack_require__(243);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__example___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__example__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__README_md__ = __webpack_require__(233);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__README_md__ = __webpack_require__(234);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__README_md___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__README_md__);
 //
 //
@@ -1064,13 +1079,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 26:
+/***/ 27:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__algorithm__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__vnode__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__algorithm__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__vnode__ = __webpack_require__(24);
 
 
 
@@ -1211,13 +1226,13 @@ function renderDefault(h, context) {
 
 /***/ }),
 
-/***/ 27:
+/***/ 28:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
-var req = __webpack_require__(244);
+var req = __webpack_require__(247);
 var keys = req.keys().filter(function (key) {
     return key !== './index.vue';
 }).sort();
@@ -1239,6 +1254,7 @@ var components = keys.map(function (key) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = calcCellMap;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helper__ = __webpack_require__(6);
 /*
     Cell format
     ```
@@ -1266,6 +1282,7 @@ var components = keys.map(function (key) {
     ```
 */
 
+
 /**
  * Parse input
  * @param {string} items like
@@ -1276,9 +1293,7 @@ var components = keys.map(function (key) {
  *                  `[{start: 'start', end: 'second' length: '100px'}, ...]`
  */
 function parseRowsOrCols(items) {
-    items = items.split(' ').filter(function (item) {
-        return !!item;
-    });
+    items = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__helper__["a" /* splitBySpace */])(items);
     var lastItemIndex = items.length - 1;
     return items.reduce(function (results, item, index) {
         var r = item.match(/^\[([^\]]+)\]$/);
@@ -1348,13 +1363,6 @@ function calcCellMap(inputRows, inputCols) {
 
 /***/ }),
 
-/***/ 51:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
 /***/ 52:
 /***/ (function(module, exports) {
 
@@ -1374,7 +1382,25 @@ function calcCellMap(inputRows, inputCols) {
 
 // removed by extract-text-webpack-plugin
 
+/***/ }),
+
+/***/ 55:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 6:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = splitBySpace;
+function splitBySpace(input) {
+    return input.trim().split(/[\n\r\s\uFEFF\xA0]+/);
+}
+
 /***/ })
 
-},[24]);
-//# sourceMappingURL=app.b2e0c1d85c2ce5948e76.js.map
+},[25]);
+//# sourceMappingURL=app.590754275ca1f2fefa6b.js.map
