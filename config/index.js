@@ -9,7 +9,7 @@ module.exports = {
     index: path.resolve(__dirname, '../dist/index.html'),
     docIndex: path.resolve(__dirname, '../doc/index.html'),
     assetsRoot: path.resolve(__dirname, '../dist'),
-    assetsDocRoot: path.resolve(__dirname, '../doc'),
+    assetsDocRoot: path.resolve(__dirname, '../docs'),
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     productionSourceMap: true,
