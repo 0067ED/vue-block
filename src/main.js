@@ -3,9 +3,12 @@
 import Vue from 'vue';
 import App from './App';
 import Block from './index';
+import vhtml from 'vhtml-ui';
+import 'vhtml-ui/lib/vhtml.css';
 
 Vue.config.productionTip = false;
 Vue.use(Block);
+Vue.use(vhtml);
 
 /* eslint-disable no-new */
 new Vue({
