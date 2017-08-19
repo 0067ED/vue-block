@@ -65,4 +65,11 @@ export default {
     border: 1px solid #adb5bd;
     box-shadow: 3px 3px 3px #adb5bd;
 }
+
+.example-img-board {
+    width: 800px;
+}
+.example-img-board .block-area {
+    border: 1px solid #FFF;
+}
 </style>

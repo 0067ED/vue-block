@@ -4,7 +4,7 @@ webpackJsonp([1],{
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Block__ = __webpack_require__(242);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Block__ = __webpack_require__(243);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Block___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_Block__);
 
 
@@ -28,7 +28,7 @@ var Component = __webpack_require__(4)(
   /* script */
   __webpack_require__(26),
   /* template */
-  __webpack_require__(244),
+  __webpack_require__(245),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -143,7 +143,7 @@ function calcAreasByPattern(cellMap, pattern) {
     pattern = pattern.split(',').map(__WEBPACK_IMPORTED_MODULE_0__helper__["a" /* splitBySpace */]);
 
     if (cellMap.length !== pattern.length || cellMap[0].length !== pattern[0].length) {
-        throw new Error('[BLOCK] `template`, `rows`, `cols` not match. ');
+        throw new Error('[BLOCK] `pattern`, `rows`, `cols` not match.');
     }
 
     // console.log(pattern);
@@ -837,7 +837,7 @@ module.exports = "<block>\n    <div slot=\"center\" class=\"area-1 box\"></div>\
 /***/ 239:
 /***/ (function(module, exports) {
 
-module.exports = "<block style=\"height: 200px;\">\n    <div slot=\"middle\" class=\"area-1 box\"></div>\n</block>\n"
+module.exports = "<block class=\"example-middle\">\n    <div slot=\"middle\" class=\"example-middle-txt\">This is a message in the middle of box.</div>\n</block>\n"
 
 /***/ }),
 
@@ -910,6 +910,13 @@ module.exports = "<block\n    cols=\"150px 1fr 150px\"\n    rows=\"50px 1fr 30px
 /***/ }),
 
 /***/ 242:
+/***/ (function(module, exports) {
+
+module.exports = "<block\n    class=\"example-img-board\"\n    cols=\"1fr 1fr 1fr 1fr\"\n    rows=\"1fr 1fr 1fr\"\n    pattern=\"\n        first first   second second,\n        first first   forth  fifth,\n        sixth seventh seventh eighth\">\n    <img slot=\"first\" src=\"https://placeimg.com/640/640/any\"></img>\n    <img slot=\"second\" src=\"https://placeimg.com/480/240/any\"></img>\n    <img slot=\"forth\" src=\"https://placeimg.com/481/481/any\"></img>\n    <img slot=\"fifth\" src=\"https://placeimg.com/482/482/any\"></img>\n    <img slot=\"sixth\" src=\"https://placeimg.com/483/483/any\"></img>\n    <img slot=\"seventh\" src=\"https://placeimg.com/600/300/any\"></img>\n    <img slot=\"eighth\" src=\"https://placeimg.com/500/500/any\"></img>\n</block>\n"
+
+/***/ }),
+
+/***/ 243:
 /***/ (function(module, exports, __webpack_require__) {
 
 function injectStyle (ssrContext) {
@@ -933,7 +940,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 243:
+/***/ 244:
 /***/ (function(module, exports, __webpack_require__) {
 
 function injectStyle (ssrContext) {
@@ -957,7 +964,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 244:
+/***/ 245:
 /***/ (function(module, exports) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -1057,7 +1064,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 
 /***/ }),
 
-/***/ 247:
+/***/ 248:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -1067,7 +1074,8 @@ var map = {
 	"./3-center.html": 238,
 	"./4-middle.html": 239,
 	"./5-inner.html": 240,
-	"./6-holygrail.html": 241
+	"./6-holygrail.html": 241,
+	"./8-img-board.html": 242
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -1083,7 +1091,7 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 247;
+webpackContext.id = 248;
 
 /***/ }),
 
@@ -1123,7 +1131,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_highlight_js_styles_github_gist_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_highlight_js_styles_github_gist_css__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_highlight_js__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_highlight_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_highlight_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__example__ = __webpack_require__(243);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__example__ = __webpack_require__(244);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__example___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__example__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__README_md__ = __webpack_require__(234);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__README_md___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__README_md__);
@@ -1347,7 +1355,7 @@ function renderDefault(h, context) {
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
-var req = __webpack_require__(247);
+var req = __webpack_require__(248);
 var keys = req.keys().filter(function (key) {
     return key !== './index.vue';
 }).sort();
@@ -1518,4 +1526,4 @@ function splitBySpace(input) {
 /***/ })
 
 },[25]);
-//# sourceMappingURL=app.e195e5aa059209cdcf1d.js.map
+//# sourceMappingURL=app.cc4474366a64382e71df.js.map
