@@ -94,7 +94,7 @@ export function calcAreasByPattern(cellMap, pattern) {
     pattern = pattern.split(',').map(splitBySpace);
 
     if (cellMap.length !== pattern.length || cellMap[0].length !== pattern[0].length) {
-        throw new Error('[BLOCK] `template`, `rows`, `cols` not match. ');
+        throw new Error('[BLOCK] `pattern`, `rows`, `cols` not match.');
     }
 
     // console.log(pattern);
