@@ -54,4 +54,15 @@ export default {
     border: 1px solid #adb5bd;
     border-top: none;
 }
+
+.example-middle {
+    height: 400px;
+}
+.example-middle-txt {
+    padding: 20px;
+    width: 200px;
+    line-height: 20px;
+    border: 1px solid #adb5bd;
+    box-shadow: 3px 3px 3px #adb5bd;
+}
 </style>
