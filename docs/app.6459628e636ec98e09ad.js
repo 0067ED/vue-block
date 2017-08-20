@@ -1,10 +1,10 @@
 webpackJsonp([1],{
 
-/***/ 16:
+/***/ 17:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Block__ = __webpack_require__(243);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Block__ = __webpack_require__(244);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Block___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_Block__);
 
 
@@ -12,23 +12,30 @@ webpackJsonp([1],{
 __WEBPACK_IMPORTED_MODULE_0__components_Block___default.a.install = function (Vue) {
     Vue.component(__WEBPACK_IMPORTED_MODULE_0__components_Block___default.a.name, __WEBPACK_IMPORTED_MODULE_0__components_Block___default.a);
 };
-__WEBPACK_IMPORTED_MODULE_0__components_Block___default.a.version = '1.0.0';
+__WEBPACK_IMPORTED_MODULE_0__components_Block___default.a.version = '1.0.1';
 
 /* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0__components_Block___default.a);
 
 /***/ }),
 
-/***/ 17:
+/***/ 18:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 20:
 /***/ (function(module, exports, __webpack_require__) {
 
 function injectStyle (ssrContext) {
-  __webpack_require__(53)
+  __webpack_require__(55)
 }
 var Component = __webpack_require__(4)(
   /* script */
-  __webpack_require__(26),
+  __webpack_require__(28),
   /* template */
-  __webpack_require__(245),
+  __webpack_require__(246),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -42,12 +49,12 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 19:
+/***/ 21:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = calcAreasByPattern;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helper__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helper__ = __webpack_require__(7);
 /*
 
     Area format
@@ -175,14 +182,14 @@ function calcAreasByPattern(cellMap, pattern) {
 
 /***/ }),
 
-/***/ 20:
+/***/ 22:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = calcDiv;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_create__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_create__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_create___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_create__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__line__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__line__ = __webpack_require__(25);
 
 /*
 
@@ -485,16 +492,16 @@ function calcDiv(cellMap, areas) {
 
 /***/ }),
 
-/***/ 21:
+/***/ 23:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["b"] = layout;
 /* harmony export (immutable) */ __webpack_exports__["a"] = calcCSS;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cell__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__area__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__div__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__length__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cell__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__area__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__div__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__length__ = __webpack_require__(24);
 
 
 
@@ -523,13 +530,41 @@ function calcCSS(div) {
 
 /***/ }),
 
-/***/ 22:
+/***/ 236:
+/***/ (function(module, exports) {
+
+module.exports = "<h1 id=\"vue-block\">vue-block</h1>\n<blockquote>\n<p>A Vue plugin helping you build <strong>CSS grid like layout system</strong> with the support of old browser like IE9.</p>\n</blockquote>\n<h2 id=\"feature\">Feature</h2>\n<p><strong>vue-block</strong> can provide you:</p>\n<ul>\n<li>CSS grid like layout system.</li>\n<li>Really easy to use <a href=\".#api\">API</a>, especially for new Vue beginner.</li>\n<li>Support IE9+ and other modern browser which support <a href=\"http://caniuse.com/#search=calc\">CSS calc</a>.</li>\n<li><a href=\"https://vuejs.org/v2/guide/render-function.html#Functional-Components\">Functional component</a>, which is stateless and instanceless.</li>\n</ul>\n<h2 id=\"install\">Install</h2>\n<p>Install with npm:</p>\n<pre><code>npm install --save-dev vue-block\n</code></pre><h2 id=\"usage\">Usage</h2>\n<p>Basicly <code>vue-block</code> is a Vue plugin. Also you can use it as a Vue component.</p>\n<p>Plugin Usage:</p>\n<pre><code class=\"lang-javascript\">import &#39;vue-block/dist/block.css&#39;;\nimport block from &#39;vue-block&#39;;\nimport Vue from &#39;vue&#39;;\nVue.use(block);\n\nnew Vue({\n    el: &#39;#app&#39;,\n    template: `&lt;block&gt;\n        &lt;div slot=&quot;left&quot;&gt;&lt;div&gt;\n        &lt;div slot=&quot;right&quot;&gt;&lt;div&gt;\n    &lt;/block&gt;`\n});\n</code></pre>\n<p>Component Usage:</p>\n<pre><code class=\"lang-javascript\">import &#39;vue-block/dist/block.css&#39;;\nimport block from &#39;vue-block&#39;;\nimport Vue from &#39;vue&#39;;\n\nnew Vue({\n    el: &#39;#app&#39;,\n    template: `&lt;block&gt;\n        &lt;div slot=&quot;left&quot;&gt;&lt;div&gt;\n        &lt;div slot=&quot;right&quot;&gt;&lt;div&gt;\n    &lt;/block&gt;`,\n    components: { block }\n});\n</code></pre>\n<h2 id=\"api\">API</h2>\n<p><code>vue-block</code>&#39;s API is provide by all kinds of <a href=\"https://vuejs.org/v2/guide/components.html#Named-Slots\">vue slot</a>. It provide some default slot to handle the basic layout function.</p>\n<p>For Example:</p>\n<pre><code class=\"lang-html\">&lt;!-- left and right --&gt;\n&lt;block&gt;\n    &lt;div slot=&quot;left&quot;&gt;left&lt;div&gt;\n    &lt;div slot=&quot;right&quot;&gt;right&lt;div&gt;\n&lt;/block&gt;\n\n&lt;!-- horizontal center --&gt;\n&lt;block&gt;\n    &lt;div slot=&quot;center&quot;&gt;center 1&lt;div&gt;\n    &lt;div slot=&quot;center&quot;&gt;center 2&lt;div&gt;\n&lt;/block&gt;\n\n&lt;!-- middle of the block, both vertical and horizontal --&gt;\n&lt;block&gt;\n    &lt;div slot=&quot;middle&quot;&gt;middle 1&lt;div&gt;\n    &lt;div slot=&quot;middle&quot;&gt;middle 2&lt;div&gt;\n&lt;/block&gt;\n</code></pre>\n<p>And most excited thing is <code>vue-block</code> support css grid like layout system.</p>\n<p>For Example:</p>\n<pre><code class=\"lang-html\">&lt;block\n    cols=&quot;100px 2fr 1fr&quot;\n    rows=&quot;100px 200px 100px&quot;\n    pattern=&quot;header header right, side main right, side main right&quot;&gt;\n    &lt;div slot=&quot;header&quot;&gt;&lt;/div&gt;\n    &lt;div slot=&quot;side&quot;&gt;&lt;/div&gt;\n    &lt;div slot=&quot;main&quot;&gt;&lt;/div&gt;\n    &lt;div slot=&quot;right&quot;&gt;&lt;/div&gt;\n&lt;/block&gt;\n</code></pre>\n<h2 id=\"build-setup\">Build Setup</h2>\n<pre><code class=\"lang-bash\"># install dependencies\nnpm install\n\n# serve with hot reload at localhost:8080\nnpm run dev\n\n# build for production with minification\nnpm run build\n\n# build for doc\nnpm run doc\n</code></pre>\n";
+
+/***/ }),
+
+/***/ 237:
+/***/ (function(module, exports) {
+
+module.exports = "<block\n    style=\"height:500px;\"\n    rows=\"40px 1fr 1fr 1fr 100px\"\n    cols=\"100px 1fr 1fr 1fr 100px\"\n    pattern=\"\n        menu   header header header header,\n        menu   b11    b12    b13    info,\n        menu   b21    b22    b23    info,\n        ad     b31    b32    b33    info,\n        footer footer footer footer footer\">\n    <div slot=\"header\" class=\"area-1\"></div>\n    <div slot=\"menu\" class=\"area-2\"></div>\n    <div slot=\"b11\" class=\"area-3\"></div>\n    <div slot=\"b12\" class=\"area-4\"></div>\n    <div slot=\"b13\" class=\"area-5\"></div>\n    <div slot=\"b21\" class=\"area-6\"></div>\n    <div slot=\"b22\" class=\"area-7\"></div>\n    <div slot=\"b23\" class=\"area-8\"></div>\n    <div slot=\"b31\" class=\"area-0\"></div>\n    <div slot=\"b32\" class=\"area-1\"></div>\n    <div slot=\"b33\" class=\"area-2\"></div>\n    <div slot=\"info\" class=\"area-3\"></div>\n    <div slot=\"ad\" class=\"area-4\"></div>\n    <div slot=\"footer\" class=\"area-5\"></div>\n</block>\n"
+
+/***/ }),
+
+/***/ 238:
+/***/ (function(module, exports) {
+
+module.exports = "<block>\n    <v-select slot=\"left\" :options=\"cityOptions\" v-model=\"selectedCity\" placeholder=\"Please choose...\" style=\"width:150px;\"></v-select>\n    <v-number-input slot=\"left\" kind=\"step\" :value=\"10\" style=\"margin-left:10px;\"></v-number-input>\n    <v-input slot=\"right\" type=\"search\" placeholder=\"Search name...\" style=\"width:240px;\"></v-input>\n    <v-button slot=\"right\" status=\"primary\" style=\"margin-left:10px;\">Search</v-button>                                                                                                                                                            </v-number-input> slot=\"right\" kind=\"step\" :value=\"10\"></v-number-input>\n</block>\n"
+
+/***/ }),
+
+/***/ 239:
+/***/ (function(module, exports) {
+
+module.exports = "<block>\n    <v-button slot=\"center\" status=\"warning\">Confirm</v-button>\n    <v-button slot=\"center\" style=\"margin-left:10px;\">Cancel</v-button>\n</block>\n"
+
+/***/ }),
+
+/***/ 24:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export parse */
 /* harmony export (immutable) */ __webpack_exports__["a"] = calcCSSWidthOrHeight;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_create__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_create__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_create___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_create__);
 
 /*
@@ -725,218 +760,31 @@ function calcCSSWidthOrHeight(div, widthOrHeight) {
 
 /***/ }),
 
-/***/ 23:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = calcLines;
-/*
-
-    Line format
-    ```
-    {
-        type: 'row',        // row | col
-        span: 2,            // crossed cell count
-        x: 0,
-        y: 0
-    }
-    ```
-
-*/
-
-/**
- * calculate row or col lines
- * @param {Array.<Array.<Object>>} cellMap cell map.
- * @param {Object} all areas.
- *          `{ areaName: area, areaName2: area }`
- * @param {boolean} isRow is row or col
- * @return {Array.<Object>} lines
- */
-function calcLines(cellMap, areas, isRow) {
-    var maxY = cellMap.length;
-    var maxX = cellMap[0].length;
-    var max = (isRow ? maxY : maxX) - 1;
-    var maxCellCount = isRow ? maxX : maxY;
-    var type = isRow ? 'row' : 'col';
-    var maxSpan = isRow ? maxX : maxY;
-    var spanName = isRow ? 'colSpan' : 'rowSpan';
-    var staticIndexName = isRow ? 'y' : 'x';
-    var dynamicIndexName = isRow ? 'x' : 'y';
-    var lines = [];
-    function tryAddLine(i, j, start) {
-        if (j <= start) {
-            return;
-        }
-
-        // crossed cell count
-        var span = j - start;
-        var line = {
-            type: type,
-            span: span
-        };
-        line[staticIndexName] = i + 1;
-        line[dynamicIndexName] = start;
-        lines.push(line);
-    }
-
-    for (var i = 0; i < max; i++) {
-        var start = 0;
-        var j = 0;
-        while (j < maxCellCount) {
-            var beforeCell = isRow ? cellMap[i][j] : cellMap[j][i];
-            var afterCell = isRow ? cellMap[i + 1][j] : cellMap[j][i + 1];
-            if (beforeCell.name === afterCell.name) {
-                tryAddLine(i, j, start);
-                j = start = j + areas[beforeCell.name][spanName];
-            } else {
-                j++;
-            }
-        }
-        tryAddLine(i, j, start);
-    }
-    return lines;
-}
-
-/***/ }),
-
-/***/ 234:
-/***/ (function(module, exports) {
-
-module.exports = "<h1 id=\"vue-block\">vue-block</h1>\n<blockquote>\n<p>A Vue plugin helping you build <strong>CSS grid like layout system</strong> with the support of old browser like IE9.</p>\n</blockquote>\n<h2 id=\"feature\">Feature</h2>\n<p><strong>vue-block</strong> can provide you:</p>\n<ul>\n<li>CSS grid like layout system.</li>\n<li>Really easy to use <a href=\".#api\">API</a>, especially for new Vue beginner.</li>\n<li>Support IE9+ and other modern browser which support <a href=\"http://caniuse.com/#search=calc\">CSS calc</a>.</li>\n<li><a href=\"https://vuejs.org/v2/guide/render-function.html#Functional-Components\">Functional component</a>, which is stateless and instanceless.</li>\n</ul>\n<h2 id=\"install\">Install</h2>\n<p>Install with npm:</p>\n<pre><code>npm install --save-dev vue-block\n</code></pre><h2 id=\"usage\">Usage</h2>\n<p>Basicly <code>vue-block</code> is a Vue plugin. Also you can use it as a Vue component.</p>\n<p>Plugin Usage:</p>\n<pre><code class=\"lang-javascript\">import &#39;vue-block/dist/block.css&#39;;\nimport block from &#39;vue-block&#39;;\nimport Vue from &#39;vue&#39;;\nVue.use(block);\n\nnew Vue({\n    el: &#39;#app&#39;,\n    template: `&lt;block&gt;\n        &lt;div slot=&quot;left&quot;&gt;&lt;div&gt;\n        &lt;div slot=&quot;right&quot;&gt;&lt;div&gt;\n    &lt;/block&gt;`\n});\n</code></pre>\n<p>Component Usage:</p>\n<pre><code class=\"lang-javascript\">import &#39;vue-block/dist/block.css&#39;;\nimport block from &#39;vue-block&#39;;\nimport Vue from &#39;vue&#39;;\n\nnew Vue({\n    el: &#39;#app&#39;,\n    template: `&lt;block&gt;\n        &lt;div slot=&quot;left&quot;&gt;&lt;div&gt;\n        &lt;div slot=&quot;right&quot;&gt;&lt;div&gt;\n    &lt;/block&gt;`,\n    components: { block }\n});\n</code></pre>\n<h2 id=\"api\">API</h2>\n<p><code>vue-block</code>&#39;s API is provide by all kinds of <a href=\"https://vuejs.org/v2/guide/components.html#Named-Slots\">vue slot</a>. It provide some default slot to handle the basic layout function.</p>\n<p>For Example:</p>\n<pre><code class=\"lang-html\">&lt;!-- left and right --&gt;\n&lt;block&gt;\n    &lt;div slot=&quot;left&quot;&gt;left&lt;div&gt;\n    &lt;div slot=&quot;right&quot;&gt;right&lt;div&gt;\n&lt;/block&gt;\n\n&lt;!-- horizontal center --&gt;\n&lt;block&gt;\n    &lt;div slot=&quot;center&quot;&gt;center 1&lt;div&gt;\n    &lt;div slot=&quot;center&quot;&gt;center 2&lt;div&gt;\n&lt;/block&gt;\n\n&lt;!-- middle of the block, both vertical and horizontal --&gt;\n&lt;block&gt;\n    &lt;div slot=&quot;middle&quot;&gt;middle 1&lt;div&gt;\n    &lt;div slot=&quot;middle&quot;&gt;middle 2&lt;div&gt;\n&lt;/block&gt;\n</code></pre>\n<p>And most excited thing is <code>vue-block</code> support css grid like layout system.</p>\n<p>For Example:</p>\n<pre><code class=\"lang-html\">&lt;block\n    cols=&quot;100px 2fr 1fr&quot;\n    rows=&quot;100px 200px 100px&quot;\n    pattern=&quot;header header right, side main right, side main right&quot;&gt;\n    &lt;div slot=&quot;header&quot;&gt;&lt;/div&gt;\n    &lt;div slot=&quot;side&quot;&gt;&lt;/div&gt;\n    &lt;div slot=&quot;main&quot;&gt;&lt;/div&gt;\n    &lt;div slot=&quot;right&quot;&gt;&lt;/div&gt;\n&lt;/block&gt;\n</code></pre>\n<h2 id=\"build-setup\">Build Setup</h2>\n<pre><code class=\"lang-bash\"># install dependencies\nnpm install\n\n# serve with hot reload at localhost:8080\nnpm run dev\n\n# build for production with minification\nnpm run build\n\n# build for doc\nnpm run doc\n</code></pre>\n";
-
-/***/ }),
-
-/***/ 235:
-/***/ (function(module, exports) {
-
-module.exports = "<block\n    rows=\"100px 200px 100px\"\n    cols=\"100px 300px auto 100px\"\n    pattern=\"header header test right, side main second right, side main second right\">\n    <div slot=\"header\" class=\"area-1\"></div>\n    <div slot=\"side\" class=\"area-2\"></div>\n    <div slot=\"main\" class=\"area-3\"></div>\n    <div slot=\"right\" class=\"area-4\"></div>\n    <div slot=\"second\" class=\"area-5\"></div>\n    <div slot=\"second\" class=\"area-6\"></div>\n    <div slot=\"test\" class=\"area-7\"></div>\n</block>\n"
-
-/***/ }),
-
-/***/ 236:
-/***/ (function(module, exports) {
-
-module.exports = "<block>\n    <div slot=\"left\" class=\"area-1 box\"></div>\n    <div slot=\"left\" class=\"area-3 box\"></div>\n    <div slot=\"left\" class=\"area-5 box\"></div>\n    <div slot=\"left\" class=\"area-2 box\"></div>\n    <div slot=\"right\" class=\"area-4 box\"></div>\n</block>\n"
-
-/***/ }),
-
-/***/ 237:
-/***/ (function(module, exports) {
-
-module.exports = "<block>\n    <div slot=\"left\" class=\"area-1 box\"></div>\n    <div slot=\"left\" class=\"area-3 box\"></div>\n    <div slot=\"right\" class=\"area-5 box\"></div>\n    <div slot=\"center\" class=\"area-2 box\"></div>\n    <div slot=\"center\" class=\"area-4 box\"></div>\n</block>\n"
-
-/***/ }),
-
-/***/ 238:
-/***/ (function(module, exports) {
-
-module.exports = "<block>\n    <div slot=\"center\" class=\"area-1 box\"></div>\n    <div slot=\"center\" class=\"area-2 box\"></div>\n    <div slot=\"center\" class=\"area-3 box\"></div>\n</block>\n"
-
-/***/ }),
-
-/***/ 239:
+/***/ 240:
 /***/ (function(module, exports) {
 
 module.exports = "<block class=\"example-middle\">\n    <div slot=\"middle\" class=\"example-middle-txt\">This is a message in the middle of box.</div>\n</block>\n"
 
 /***/ }),
 
-/***/ 24:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = mergeClassOrStyle;
-/* harmony export (immutable) */ __webpack_exports__["b"] = applyClass;
-/* harmony export (immutable) */ __webpack_exports__["c"] = applyStyle;
-function mergeClassOrStyle(first, second) {
-    var firstIsArray = Array.isArray(first);
-    var secondIsArray = Array.isArray(second);
-    if (firstIsArray) {
-        first = first.concat();
-        if (secondIsArray) {
-            return first.concat(second);
-        }
-
-        first.push(second);
-        return first;
-    }
-
-    if (secondIsArray) {
-        second.unshift(first);
-        return second;
-    }
-
-    return [first, second];
-}
-
-function _applyClassOrStyle(vnodes, classOrStyle, value) {
-    if (value == null) {
-        return;
-    }
-
-    if (!Array.isArray(vnodes)) {
-        vnodes.data = vnodes.data || {};
-        vnodes.data[classOrStyle] = mergeClassOrStyle(vnodes.data[classOrStyle], value);
-        return;
-    }
-    vnodes.forEach(function (vnode) {
-        vnode.data = vnode.data || {};
-        vnode.data[classOrStyle] = mergeClassOrStyle(vnode.data[classOrStyle], value);
-    });
-}
-
-function applyClass(vnodes, clazz) {
-    _applyClassOrStyle(vnodes, 'class', clazz);
-}
-
-function applyStyle(vnodes, style) {
-    _applyClassOrStyle(vnodes, 'style', style);
-}
-
-/***/ }),
-
-/***/ 240:
+/***/ 241:
 /***/ (function(module, exports) {
 
 module.exports = "<block\n    cols=\"100px auto\"\n    rows=\"50px auto\"\n    pattern=\"img name, img description\"\n    style=\"height:100px;\"\n    class=\"outline-0\">\n    <block slot=\"img\" style=\"border-right:none;\">\n        <img src=\"https://avatars1.githubusercontent.com/u/249872?v=4&s=460\"\n            slot=\"middle\"\n            style=\"width:60px; height:60px; border-radius:60px;\"></img>\n    </block>\n    <h1 slot=\"name\" style=\"padding-top:20px; font-size:1em; border-bottom:none;\">MZhou</h1>\n    <p slot=\"description\">\n        Frontend developer, Creator of lining.js, vue-block and octocard. And other good stuff.\n        <a href=\"https://github.com/zmmbreeze\"></a>\n    </p>\n</block>\n"
 
 /***/ }),
 
-/***/ 241:
+/***/ 242:
 /***/ (function(module, exports) {
 
 module.exports = "<block\n    cols=\"150px 1fr 150px\"\n    rows=\"50px 1fr 30px\"\n    pattern=\"header header header, navigation main ads, footer footer footer\"\n    style=\"height: 300px;\"\n    class=\"outline-0\">\n    <block slot=\"header\" class=\"area-0\"></block>\n    <block slot=\"navigation\" class=\"area-1\"></block>\n    <block slot=\"main\" class=\"area-2\"></block>\n    <block slot=\"ads\" class=\"area-3\"></block>\n    <block slot=\"footer\" class=\"area-4\"></block>\n</block>\n"
 
 /***/ }),
 
-/***/ 242:
+/***/ 243:
 /***/ (function(module, exports) {
 
 module.exports = "<block\n    class=\"example-img-board\"\n    cols=\"1fr 1fr 1fr 1fr\"\n    rows=\"1fr 1fr 1fr\"\n    pattern=\"\n        first first   second second,\n        first first   forth  fifth,\n        sixth seventh seventh eighth\">\n    <img slot=\"first\" src=\"https://placeimg.com/640/640/any\"></img>\n    <img slot=\"second\" src=\"https://placeimg.com/480/240/any\"></img>\n    <img slot=\"forth\" src=\"https://placeimg.com/481/481/any\"></img>\n    <img slot=\"fifth\" src=\"https://placeimg.com/482/482/any\"></img>\n    <img slot=\"sixth\" src=\"https://placeimg.com/483/483/any\"></img>\n    <img slot=\"seventh\" src=\"https://placeimg.com/600/300/any\"></img>\n    <img slot=\"eighth\" src=\"https://placeimg.com/500/500/any\"></img>\n</block>\n"
-
-/***/ }),
-
-/***/ 243:
-/***/ (function(module, exports, __webpack_require__) {
-
-function injectStyle (ssrContext) {
-  __webpack_require__(55)
-}
-var Component = __webpack_require__(4)(
-  /* script */
-  __webpack_require__(27),
-  /* template */
-  null,
-  /* styles */
-  injectStyle,
-  /* scopeId */
-  null,
-  /* moduleIdentifier (server only) */
-  null
-)
-
-module.exports = Component.exports
-
 
 /***/ }),
 
@@ -944,11 +792,11 @@ module.exports = Component.exports
 /***/ (function(module, exports, __webpack_require__) {
 
 function injectStyle (ssrContext) {
-  __webpack_require__(54)
+  __webpack_require__(57)
 }
 var Component = __webpack_require__(4)(
   /* script */
-  __webpack_require__(28),
+  __webpack_require__(29),
   /* template */
   null,
   /* styles */
@@ -965,6 +813,30 @@ module.exports = Component.exports
 /***/ }),
 
 /***/ 245:
+/***/ (function(module, exports, __webpack_require__) {
+
+function injectStyle (ssrContext) {
+  __webpack_require__(56)
+}
+var Component = __webpack_require__(4)(
+  /* script */
+  __webpack_require__(30),
+  /* template */
+  null,
+  /* styles */
+  injectStyle,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 246:
 /***/ (function(module, exports) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -1064,18 +936,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 
 /***/ }),
 
-/***/ 248:
+/***/ 249:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./0-grid.html": 235,
-	"./1-left-right.html": 236,
-	"./2-left-right-center.html": 237,
-	"./3-center.html": 238,
-	"./4-middle.html": 239,
-	"./5-inner.html": 240,
-	"./6-holygrail.html": 241,
-	"./8-img-board.html": 242
+	"./0-dashboard.html": 237,
+	"./1-left-right.html": 238,
+	"./3-center.html": 239,
+	"./4-middle.html": 240,
+	"./5-inner.html": 241,
+	"./6-holygrail.html": 242,
+	"./8-img-board.html": 243
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -1091,7 +962,7 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 248;
+webpackContext.id = 249;
 
 /***/ }),
 
@@ -1099,26 +970,73 @@ webpackContext.id = 248;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__App__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__App___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__App__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__index__ = __webpack_require__(16);
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+/* harmony export (immutable) */ __webpack_exports__["a"] = calcLines;
+/*
 
+    Line format
+    ```
+    {
+        type: 'row',        // row | col
+        span: 2,            // crossed cell count
+        x: 0,
+        y: 0
+    }
+    ```
 
+*/
 
+/**
+ * calculate row or col lines
+ * @param {Array.<Array.<Object>>} cellMap cell map.
+ * @param {Object} all areas.
+ *          `{ areaName: area, areaName2: area }`
+ * @param {boolean} isRow is row or col
+ * @return {Array.<Object>} lines
+ */
+function calcLines(cellMap, areas, isRow) {
+    var maxY = cellMap.length;
+    var maxX = cellMap[0].length;
+    var max = (isRow ? maxY : maxX) - 1;
+    var maxCellCount = isRow ? maxX : maxY;
+    var type = isRow ? 'row' : 'col';
+    var maxSpan = isRow ? maxX : maxY;
+    var spanName = isRow ? 'colSpan' : 'rowSpan';
+    var staticIndexName = isRow ? 'y' : 'x';
+    var dynamicIndexName = isRow ? 'x' : 'y';
+    var lines = [];
+    function tryAddLine(i, j, start) {
+        if (j <= start) {
+            return;
+        }
 
-__WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].config.productionTip = false;
-__WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].use(__WEBPACK_IMPORTED_MODULE_2__index__["a" /* default */]);
+        // crossed cell count
+        var span = j - start;
+        var line = {
+            type: type,
+            span: span
+        };
+        line[staticIndexName] = i + 1;
+        line[dynamicIndexName] = start;
+        lines.push(line);
+    }
 
-/* eslint-disable no-new */
-new __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */]({
-  el: '#app',
-  template: '<App/>',
-  components: { App: __WEBPACK_IMPORTED_MODULE_1__App___default.a }
-});
+    for (var i = 0; i < max; i++) {
+        var start = 0;
+        var j = 0;
+        while (j < maxCellCount) {
+            var beforeCell = isRow ? cellMap[i][j] : cellMap[j][i];
+            var afterCell = isRow ? cellMap[i + 1][j] : cellMap[j][i + 1];
+            if (beforeCell.name === afterCell.name) {
+                tryAddLine(i, j, start);
+                j = start = j + areas[beforeCell.name][spanName];
+            } else {
+                j++;
+            }
+        }
+        tryAddLine(i, j, start);
+    }
+    return lines;
+}
 
 /***/ }),
 
@@ -1126,14 +1044,102 @@ new __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */]({
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = mergeClassOrStyle;
+/* harmony export (immutable) */ __webpack_exports__["b"] = applyClass;
+/* harmony export (immutable) */ __webpack_exports__["c"] = applyStyle;
+function mergeClassOrStyle(first, second) {
+    var firstIsArray = Array.isArray(first);
+    var secondIsArray = Array.isArray(second);
+    if (firstIsArray) {
+        first = first.concat();
+        if (secondIsArray) {
+            return first.concat(second);
+        }
+
+        first.push(second);
+        return first;
+    }
+
+    if (secondIsArray) {
+        second.unshift(first);
+        return second;
+    }
+
+    return [first, second];
+}
+
+function _applyClassOrStyle(vnodes, classOrStyle, value) {
+    if (value == null) {
+        return;
+    }
+
+    if (!Array.isArray(vnodes)) {
+        vnodes.data = vnodes.data || {};
+        vnodes.data[classOrStyle] = mergeClassOrStyle(vnodes.data[classOrStyle], value);
+        return;
+    }
+    vnodes.forEach(function (vnode) {
+        vnode.data = vnode.data || {};
+        vnode.data[classOrStyle] = mergeClassOrStyle(vnode.data[classOrStyle], value);
+    });
+}
+
+function applyClass(vnodes, clazz) {
+    _applyClassOrStyle(vnodes, 'class', clazz);
+}
+
+function applyStyle(vnodes, style) {
+    _applyClassOrStyle(vnodes, 'style', style);
+}
+
+/***/ }),
+
+/***/ 27:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_highlight_js_styles_github_gist_css__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__App__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__App___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__App__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__index__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vhtml_ui__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vhtml_ui___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_vhtml_ui__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vhtml_ui_lib_vhtml_css__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vhtml_ui_lib_vhtml_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_vhtml_ui_lib_vhtml_css__);
+// The Vue build version to load with the `import` command
+// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+
+
+
+
+
+
+__WEBPACK_IMPORTED_MODULE_0_vue__["default"].config.productionTip = false;
+__WEBPACK_IMPORTED_MODULE_0_vue__["default"].use(__WEBPACK_IMPORTED_MODULE_2__index__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_0_vue__["default"].use(__WEBPACK_IMPORTED_MODULE_3_vhtml_ui___default.a);
+
+/* eslint-disable no-new */
+new __WEBPACK_IMPORTED_MODULE_0_vue__["default"]({
+  el: '#app',
+  template: '<App/>',
+  components: { App: __WEBPACK_IMPORTED_MODULE_1__App___default.a }
+});
+
+/***/ }),
+
+/***/ 28:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_highlight_js_styles_github_gist_css__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_highlight_js_styles_github_gist_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_highlight_js_styles_github_gist_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_highlight_js__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_highlight_js__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_highlight_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_highlight_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__example__ = __webpack_require__(244);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__example__ = __webpack_require__(245);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__example___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__example__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__README_md__ = __webpack_require__(234);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__README_md__ = __webpack_require__(236);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__README_md___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__README_md__);
 //
 //
@@ -1202,13 +1208,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 27:
+/***/ 29:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__algorithm__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__vnode__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__algorithm__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__vnode__ = __webpack_require__(26);
 
 
 
@@ -1294,7 +1300,7 @@ function renderDefault(h, context) {
 
     if (slots.right) {
         clazz['block-clear'] = true;
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__vnode__["b" /* applyClass */])(slots.right, 'block-right');
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__vnode__["b" /* applyClass */])(slots.right.reverse(), 'block-right');
         vnodes.push.apply(vnodes, slots.right);
     }
 
@@ -1349,13 +1355,13 @@ function renderDefault(h, context) {
 
 /***/ }),
 
-/***/ 28:
+/***/ 30:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
-var req = __webpack_require__(248);
+var req = __webpack_require__(249);
 var keys = req.keys().filter(function (key) {
     return key !== './index.vue';
 }).sort();
@@ -1364,20 +1370,55 @@ var components = keys.map(function (key) {
     var escapedHTML = html.trim().replace(/</g, '&lt;').replace(/>/g, '&gt;');
     return '<div class="example">' + html + '</div>\n        <pre class="code"><code class="html">' + escapedHTML + '</code></pre>';
 });
+console.log(components.join(''));
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'example',
-    template: '\n        <div class="examples">\n            ' + components.join('') + '\n        </div>\n    '
+    template: '\n        <div class="examples">\n            ' + components.join('') + '\n        </div>\n    ',
+    data: function data() {
+        return {
+            selectedCity: 1,
+            cityOptions: [{ text: 'L.A.', value: 0 }, { text: 'New York', value: 1 }, { text: 'San Francisco', value: 2 }, { text: 'Chicago', value: 3 }, { text: 'Washington, D.C.', value: 4 }, { text: 'Las Vegas', value: 5 }, { text: 'Atlanta', value: 6 }, { text: 'Seattle', value: 7 }, { text: 'Other...', value: 8 }]
+        };
+    }
 });
 
 /***/ }),
 
-/***/ 5:
+/***/ 54:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 55:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 56:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 57:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 6:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = calcCellMap;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helper__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helper__ = __webpack_require__(7);
 /*
     Cell format
     ```
@@ -1486,35 +1527,7 @@ function calcCellMap(inputRows, inputCols) {
 
 /***/ }),
 
-/***/ 52:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 53:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 54:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 55:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 6:
+/***/ 7:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1525,5 +1538,5 @@ function splitBySpace(input) {
 
 /***/ })
 
-},[25]);
-//# sourceMappingURL=app.5424d15944ac94c661c9.js.map
+},[27]);
+//# sourceMappingURL=app.6459628e636ec98e09ad.js.map

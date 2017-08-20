@@ -79,7 +79,7 @@ function renderDefault(h, context) {
 
     if (slots.right) {
         clazz['block-clear'] = true;
-        applyClass(slots.right, 'block-right');
+        applyClass(slots.right.reverse(), 'block-right');
         vnodes.push.apply(vnodes, slots.right);
     }
 

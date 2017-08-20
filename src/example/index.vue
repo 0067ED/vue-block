@@ -9,6 +9,7 @@ const components = keys.map((key) => {
     return `<div class="example">${html}</div>
         <pre class="code"><code class="html">${escapedHTML}</code></pre>`;
 });
+console.log(components.join(''))
 
 export default {
     name: 'example',
@@ -16,7 +17,23 @@ export default {
         <div class="examples">
             ${components.join('')}
         </div>
-    `
+    `,
+    data() {
+        return {
+            selectedCity: 1,
+            cityOptions: [
+                {text:'L.A.', value:0},
+                {text:'New York', value:1},
+                {text:'San Francisco', value:2},
+                {text:'Chicago', value:3},
+                {text:'Washington, D.C.', value:4},
+                {text:'Las Vegas', value:5},
+                {text:'Atlanta', value:6},
+                {text:'Seattle', value:7},
+                {text:'Other...', value:8}
+            ]
+        };
+    }
 }
 </script>
 
