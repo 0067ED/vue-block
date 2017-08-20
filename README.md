@@ -9,7 +9,7 @@
 - CSS grid like layout system.
 - Really easy to use [API](.#api), especially for new Vue beginner.
 - Support IE9+ and other modern browser which support [CSS calc](http://caniuse.com/#search=calc).
-- [Functional component](https://vuejs.org/v2/guide/render-function.html#Functional-Components), which is statueless and instanceless.
+- [Functional component](https://vuejs.org/v2/guide/render-function.html#Functional-Components), which is stateless and instanceless.
 
 ## Install
 
