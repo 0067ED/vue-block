@@ -1,6 +1,6 @@
 {
   "name": "vue-block",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A Vue plugin helping you build **CSS grid like layout system** with the support of old browser like IE9.",
   "author": "zmmbreeze <zmmbreeze0825@gmail.com>",
   "keywords": [
@@ -27,11 +27,9 @@
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
   },
-  "dependencies": {
-    "vhtml-ui": "^1.1.9",
-    "vue": "2.2.6"
-  },
   "devDependencies": {
+    "vhtml-ui": "^1.1.9",
+    "vue": "2.2.6",
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.22.1",
     "babel-eslint": "^7.1.1",
