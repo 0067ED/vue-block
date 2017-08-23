@@ -12,7 +12,7 @@ webpackJsonp([1],{
 __WEBPACK_IMPORTED_MODULE_0__components_Block___default.a.install = function (Vue) {
     Vue.component(__WEBPACK_IMPORTED_MODULE_0__components_Block___default.a.name, __WEBPACK_IMPORTED_MODULE_0__components_Block___default.a);
 };
-__WEBPACK_IMPORTED_MODULE_0__components_Block___default.a.version = '1.0.1';
+__WEBPACK_IMPORTED_MODULE_0__components_Block___default.a.version = '1.0.2';
 
 /* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0__components_Block___default.a);
 
@@ -1539,4 +1539,4 @@ function splitBySpace(input) {
 /***/ })
 
 },[27]);
-//# sourceMappingURL=app.6459628e636ec98e09ad.js.map
+//# sourceMappingURL=app.d89c417f41ba7c197178.js.map
