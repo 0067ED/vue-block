@@ -1,32 +1,13 @@
 webpackJsonp([1],{
 
 /***/ 17:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(module) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Block__ = __webpack_require__(244);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Block___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_Block__);
-
-
-
-__WEBPACK_IMPORTED_MODULE_0__components_Block___default.a.install = function (Vue) {
-    Vue.component(__WEBPACK_IMPORTED_MODULE_0__components_Block___default.a.name, __WEBPACK_IMPORTED_MODULE_0__components_Block___default.a);
-};
-__WEBPACK_IMPORTED_MODULE_0__components_Block___default.a.version = '1.0.3';
-
-module.exports = __WEBPACK_IMPORTED_MODULE_0__components_Block___default.a;
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(249)(module)))
-
-/***/ }),
-
-/***/ 18:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 20:
+/***/ 19:
 /***/ (function(module, exports, __webpack_require__) {
 
 function injectStyle (ssrContext) {
@@ -36,7 +17,31 @@ var Component = __webpack_require__(4)(
   /* script */
   __webpack_require__(28),
   /* template */
-  __webpack_require__(246),
+  __webpack_require__(245),
+  /* styles */
+  injectStyle,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 20:
+/***/ (function(module, exports, __webpack_require__) {
+
+function injectStyle (ssrContext) {
+  __webpack_require__(57)
+}
+var Component = __webpack_require__(4)(
+  /* script */
+  __webpack_require__(29),
+  /* template */
+  null,
   /* styles */
   injectStyle,
   /* scopeId */
@@ -793,30 +798,6 @@ module.exports = "<block\n    class=\"example-img-board\"\n    cols=\"1fr 1fr 1f
 /***/ (function(module, exports, __webpack_require__) {
 
 function injectStyle (ssrContext) {
-  __webpack_require__(57)
-}
-var Component = __webpack_require__(4)(
-  /* script */
-  __webpack_require__(29),
-  /* template */
-  null,
-  /* styles */
-  injectStyle,
-  /* scopeId */
-  null,
-  /* moduleIdentifier (server only) */
-  null
-)
-
-module.exports = Component.exports
-
-
-/***/ }),
-
-/***/ 245:
-/***/ (function(module, exports, __webpack_require__) {
-
-function injectStyle (ssrContext) {
   __webpack_require__(56)
 }
 var Component = __webpack_require__(4)(
@@ -837,7 +818,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 246:
+/***/ 245:
 /***/ (function(module, exports) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -937,6 +918,36 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 
 /***/ }),
 
+/***/ 248:
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"./0-dashboard.html": 237,
+	"./1-left-right.html": 238,
+	"./3-center.html": 239,
+	"./4-middle.html": 240,
+	"./5-inner.html": 241,
+	"./6-holygrail.html": 242,
+	"./8-img-board.html": 243
+};
+function webpackContext(req) {
+	return __webpack_require__(webpackContextResolve(req));
+};
+function webpackContextResolve(req) {
+	var id = map[req];
+	if(!(id + 1)) // check for number or string
+		throw new Error("Cannot find module '" + req + "'.");
+	return id;
+};
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = 248;
+
+/***/ }),
+
 /***/ 25:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1011,36 +1022,6 @@ function calcLines(cellMap, areas, isRow) {
 
 /***/ }),
 
-/***/ 250:
-/***/ (function(module, exports, __webpack_require__) {
-
-var map = {
-	"./0-dashboard.html": 237,
-	"./1-left-right.html": 238,
-	"./3-center.html": 239,
-	"./4-middle.html": 240,
-	"./5-inner.html": 241,
-	"./6-holygrail.html": 242,
-	"./8-img-board.html": 243
-};
-function webpackContext(req) {
-	return __webpack_require__(webpackContextResolve(req));
-};
-function webpackContextResolve(req) {
-	var id = map[req];
-	if(!(id + 1)) // check for number or string
-		throw new Error("Cannot find module '" + req + "'.");
-	return id;
-};
-webpackContext.keys = function webpackContextKeys() {
-	return Object.keys(map);
-};
-webpackContext.resolve = webpackContextResolve;
-module.exports = webpackContext;
-webpackContext.id = 250;
-
-/***/ }),
-
 /***/ 26:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1101,12 +1082,13 @@ function applyStyle(vnodes, style) {
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__App__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__App__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__App___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__App__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__index__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vhtml_ui__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Block__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Block___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_Block__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vhtml_ui__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vhtml_ui___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_vhtml_ui__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vhtml_ui_lib_vhtml_css__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vhtml_ui_lib_vhtml_css__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vhtml_ui_lib_vhtml_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_vhtml_ui_lib_vhtml_css__);
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
@@ -1117,7 +1099,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 __WEBPACK_IMPORTED_MODULE_0_vue__["default"].config.productionTip = false;
-__WEBPACK_IMPORTED_MODULE_0_vue__["default"].use(__WEBPACK_IMPORTED_MODULE_2__index__["default"]);
+__WEBPACK_IMPORTED_MODULE_0_vue__["default"].component(__WEBPACK_IMPORTED_MODULE_2__components_Block___default.a.name, __WEBPACK_IMPORTED_MODULE_2__components_Block___default.a);
 __WEBPACK_IMPORTED_MODULE_0_vue__["default"].use(__WEBPACK_IMPORTED_MODULE_3_vhtml_ui___default.a);
 
 /* eslint-disable no-new */
@@ -1138,7 +1120,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_highlight_js_styles_github_gist_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_highlight_js_styles_github_gist_css__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_highlight_js__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_highlight_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_highlight_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__example__ = __webpack_require__(245);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__example__ = __webpack_require__(244);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__example___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__example__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__README_md__ = __webpack_require__(236);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__README_md___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__README_md__);
@@ -1362,7 +1344,7 @@ function renderDefault(h, context) {
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
-var req = __webpack_require__(250);
+var req = __webpack_require__(248);
 var keys = req.keys().filter(function (key) {
     return key !== './index.vue';
 }).sort();
@@ -1371,7 +1353,6 @@ var components = keys.map(function (key) {
     var escapedHTML = html.trim().replace(/</g, '&lt;').replace(/>/g, '&gt;');
     return '<div class="example">' + html + '</div>\n        <pre class="code"><code class="html">' + escapedHTML + '</code></pre>';
 });
-console.log(components.join(''));
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'example',
@@ -1540,4 +1521,4 @@ function splitBySpace(input) {
 /***/ })
 
 },[27]);
-//# sourceMappingURL=app.7501cc3860c085d62f6e.js.map
+//# sourceMappingURL=app.1949b71a764cd958f113.js.map
