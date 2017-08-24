@@ -27,6 +27,7 @@ var webpackConfig = merge(baseWebpackConfig, {
   devtool: config.build.productionSourceMap ? '#source-map' : false,
   output: {
     library: 'block',
+    libraryExport: 'default',
     libraryTarget: 'umd',
     path: config.build.assetsRoot,
     filename: utils.assetsPath('[name].js')
