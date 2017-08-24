@@ -1,6 +1,6 @@
 {
   "name": "vue-block",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A Vue plugin helping you build **CSS grid like layout system** with the support of old browser like IE9.",
   "author": "zmmbreeze <zmmbreeze0825@gmail.com>",
   "keywords": [
@@ -99,10 +99,6 @@
     "webpack-dev-middleware": "^1.10.0",
     "webpack-hot-middleware": "^2.18.0",
     "webpack-merge": "^4.1.0"
-  },
-  "engines": {
-    "node": ">= 4.0.0",
-    "npm": ">= 3.0.0"
   },
   "browserslist": [
     "> 1%",

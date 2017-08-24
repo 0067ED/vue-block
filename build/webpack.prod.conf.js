@@ -15,7 +15,8 @@ var env = process.env.NODE_ENV === 'testing'
 
 var webpackConfig = merge(baseWebpackConfig, {
   entry: {
-    block: './src/index.js'
+    block: './src/index.js',
+    'block.min': './src/index.js',
   },
   module: {
     rules: utils.styleLoaders({
@@ -46,6 +47,10 @@ var webpackConfig = merge(baseWebpackConfig, {
       cssProcessorOptions: {
         safe: true
       }
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      include: /\.min\.js$/,
+      minimize: true
     }),
     // copy custom static assets
     new CopyWebpackPlugin([
