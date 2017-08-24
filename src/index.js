@@ -6,4 +6,4 @@ Block.install = function (Vue) {
 };
 Block.version = VERSION;
 
- module.exports = Block;
+module.exports = Block;

@@ -9,7 +9,6 @@ const components = keys.map((key) => {
     return `<div class="example">${html}</div>
         <pre class="code"><code class="html">${escapedHTML}</code></pre>`;
 });
-console.log(components.join(''))
 
 export default {
     name: 'example',
