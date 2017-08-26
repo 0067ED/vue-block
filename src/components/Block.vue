@@ -32,7 +32,7 @@ function renderVNodes(h, vnodes, clazz, style) {
     </div>;
 }
 
-function renderDiv(h, context, div) {
+function renderDiv(isRoot, h, context, div) {
     // WOW, I love one piece. ^^
     const isOnepiece = !div.type;
     const spClazz = `block-pattern-${div.name}`;
@@ -51,8 +51,9 @@ function renderDiv(h, context, div) {
     };
 
     if (div.split) {
-        return <div class={clazz} style={style}>
-            {div.split.map(renderDiv.bind(null, h, context))}
+        const userData = isRoot ? context.data : {};
+        return <div class={clazz} style={style} {...userData}>
+            {div.split.map(renderDiv.bind(null, false, h, context))}
         </div>;
     }
 
@@ -88,7 +89,7 @@ function renderDefault(h, context) {
         vnodes.push(<div class="block-middle block-center">{slots.middle}</div>);
     }
 
-    return <div class={clazz}>
+    return <div class={clazz} {...context.data}>
             {vnodes}
         </div>;
 }
@@ -115,14 +116,14 @@ export default {
         }
         else {
             const layouts = layout(props.pattern, props.rows, props.cols);
-            vnode = renderDiv(h, context, layouts);
+            vnode = renderDiv(true, h, context, layouts);
         }
 
+        // jsx spread merge not support staticClass and staticStyle
+        // https://github.com/vuejs/babel-plugin-transform-vue-jsx#difference-from-react-jsx
         // apply custom class and style.
         applyClass(vnode, context.data.staticClass);
-        applyClass(vnode, context.data.class);
         applyStyle(vnode, context.data.staticStyle);
-        applyStyle(vnode, context.data.style);
         return vnode;
     }
 }
