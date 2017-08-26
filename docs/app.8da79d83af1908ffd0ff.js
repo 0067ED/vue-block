@@ -9,9 +9,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__App__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__App___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__App__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__index__ = __webpack_require__(215);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vhtml_ui__ = __webpack_require__(248);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vhtml_ui__ = __webpack_require__(249);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vhtml_ui___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_vhtml_ui__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vhtml_ui_lib_vhtml_css__ = __webpack_require__(249);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vhtml_ui_lib_vhtml_css__ = __webpack_require__(250);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vhtml_ui_lib_vhtml_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_vhtml_ui_lib_vhtml_css__);
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
@@ -218,8 +218,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('div', {
     staticClass: "container"
   }, [_vm._m(0), _vm._v(" "), _c('block', {
+    ref: "logo",
     staticClass: "logo",
     attrs: {
+      "id": "logo",
       "cols": "1fr 1fr 1fr",
       "rows": "1fr 1fr 1fr",
       "pattern": "a b c, d e f, g h i"
@@ -323,7 +325,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 __WEBPACK_IMPORTED_MODULE_0__components_Block___default.a.install = function (Vue) {
     Vue.component(__WEBPACK_IMPORTED_MODULE_0__components_Block___default.a.name, __WEBPACK_IMPORTED_MODULE_0__components_Block___default.a);
 };
-__WEBPACK_IMPORTED_MODULE_0__components_Block___default.a.version = '1.0.3';
+__WEBPACK_IMPORTED_MODULE_0__components_Block___default.a.version = '1.0.5';
 
 /* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0__components_Block___default.a);
 
@@ -365,8 +367,11 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__algorithm__ = __webpack_require__(219);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__vnode__ = __webpack_require__(247);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_helper_vue_jsx_merge_props__ = __webpack_require__(219);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_helper_vue_jsx_merge_props___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_helper_vue_jsx_merge_props__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__algorithm__ = __webpack_require__(220);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__vnode__ = __webpack_require__(248);
+
 
 
 
@@ -387,10 +392,10 @@ function renderVNodes(h, vnodes, clazz, style) {
         var singleNode = vnodes[0];
         singleNode.data = singleNode.data || {};
         if (clazz) {
-            singleNode.data.class = Object(__WEBPACK_IMPORTED_MODULE_1__vnode__["c" /* mergeClassOrStyle */])(singleNode.data.class, clazz);
+            singleNode.data.class = Object(__WEBPACK_IMPORTED_MODULE_2__vnode__["c" /* mergeClassOrStyle */])(singleNode.data.class, clazz);
         }
         if (style) {
-            singleNode.data.style = Object(__WEBPACK_IMPORTED_MODULE_1__vnode__["c" /* mergeClassOrStyle */])(singleNode.data.style, style);
+            singleNode.data.style = Object(__WEBPACK_IMPORTED_MODULE_2__vnode__["c" /* mergeClassOrStyle */])(singleNode.data.style, style);
         }
         return singleNode;
     }
@@ -403,7 +408,7 @@ function renderVNodes(h, vnodes, clazz, style) {
     );
 }
 
-function renderDiv(h, context, div) {
+function renderDiv(isRoot, h, context, div) {
     // WOW, I love one piece. ^^
     var isOnepiece = !div.type;
     var spClazz = 'block-pattern-' + div.name;
@@ -413,7 +418,7 @@ function renderDiv(h, context, div) {
     };
     clazz[spClazz] = isOnepiece;
     clazz['block-' + div.type] = !isOnepiece;
-    Object(__WEBPACK_IMPORTED_MODULE_0__algorithm__["a" /* calcCSS */])(div);
+    Object(__WEBPACK_IMPORTED_MODULE_1__algorithm__["a" /* calcCSS */])(div);
     var style = {
         width: div.csswidth || '',
         height: div.cssheight || '',
@@ -422,10 +427,11 @@ function renderDiv(h, context, div) {
     };
 
     if (div.split) {
+        var userData = isRoot ? context.data : {};
         return h(
             'div',
-            { 'class': clazz, style: style },
-            [div.split.map(renderDiv.bind(null, h, context))]
+            __WEBPACK_IMPORTED_MODULE_0_babel_helper_vue_jsx_merge_props___default()([{ 'class': clazz, style: style }, userData]),
+            [div.split.map(renderDiv.bind(null, false, h, context))]
         );
     }
 
@@ -440,19 +446,19 @@ function renderDefault(h, context) {
     var vnodes = [];
     if (slots.left) {
         clazz['block-clear'] = true;
-        Object(__WEBPACK_IMPORTED_MODULE_1__vnode__["a" /* applyClass */])(slots.left, 'block-left');
+        Object(__WEBPACK_IMPORTED_MODULE_2__vnode__["a" /* applyClass */])(slots.left, 'block-left');
         vnodes.push.apply(vnodes, slots.left);
     }
 
     if (slots.center) {
         clazz['block-center'] = true;
-        Object(__WEBPACK_IMPORTED_MODULE_1__vnode__["a" /* applyClass */])(slots.center, 'block-center');
+        Object(__WEBPACK_IMPORTED_MODULE_2__vnode__["a" /* applyClass */])(slots.center, 'block-center');
         vnodes.push.apply(vnodes, slots.center);
     }
 
     if (slots.right) {
         clazz['block-clear'] = true;
-        Object(__WEBPACK_IMPORTED_MODULE_1__vnode__["a" /* applyClass */])(slots.right.reverse(), 'block-right');
+        Object(__WEBPACK_IMPORTED_MODULE_2__vnode__["a" /* applyClass */])(slots.right.reverse(), 'block-right');
         vnodes.push.apply(vnodes, slots.right);
     }
 
@@ -467,7 +473,7 @@ function renderDefault(h, context) {
 
     return h(
         'div',
-        { 'class': clazz },
+        __WEBPACK_IMPORTED_MODULE_0_babel_helper_vue_jsx_merge_props___default()([{ 'class': clazz }, context.data]),
         [vnodes]
     );
 }
@@ -492,56 +498,18 @@ function renderDefault(h, context) {
         if (!props.pattern) {
             vnode = renderDefault(h, context);
         } else {
-            var layouts = Object(__WEBPACK_IMPORTED_MODULE_0__algorithm__["b" /* layout */])(props.pattern, props.rows, props.cols);
-            vnode = renderDiv(h, context, layouts);
+            var layouts = Object(__WEBPACK_IMPORTED_MODULE_1__algorithm__["b" /* layout */])(props.pattern, props.rows, props.cols);
+            vnode = renderDiv(true, h, context, layouts);
         }
 
+        // jsx spread merge not support staticClass and staticStyle
+        // https://github.com/vuejs/babel-plugin-transform-vue-jsx#difference-from-react-jsx
         // apply custom class and style.
-        Object(__WEBPACK_IMPORTED_MODULE_1__vnode__["a" /* applyClass */])(vnode, context.data.staticClass);
-        Object(__WEBPACK_IMPORTED_MODULE_1__vnode__["a" /* applyClass */])(vnode, context.data.class);
-        Object(__WEBPACK_IMPORTED_MODULE_1__vnode__["b" /* applyStyle */])(vnode, context.data.staticStyle);
-        Object(__WEBPACK_IMPORTED_MODULE_1__vnode__["b" /* applyStyle */])(vnode, context.data.style);
+        Object(__WEBPACK_IMPORTED_MODULE_2__vnode__["a" /* applyClass */])(vnode, context.data.staticClass);
+        Object(__WEBPACK_IMPORTED_MODULE_2__vnode__["b" /* applyStyle */])(vnode, context.data.staticStyle);
         return vnode;
     }
 });
-
-/***/ }),
-
-/***/ 219:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["b"] = layout;
-/* harmony export (immutable) */ __webpack_exports__["a"] = calcCSS;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cell__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__area__ = __webpack_require__(220);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__div__ = __webpack_require__(221);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__length__ = __webpack_require__(246);
-
-
-
-
-
-/**
- * calc layouts.
- * @param {string} pattern `header header header, side main second, side main second`
- * @param {string} rows `[start] 400px [second] 200px [third] 100px [end]`
- * @param {string} cols `100px 500px auto 100px`
- * @return {Object} div format.
- */
-function layout(pattern, rows, cols) {
-    var cellMap = Object(__WEBPACK_IMPORTED_MODULE_0__cell__["a" /* calcCellMap */])(rows, cols);
-    var areas = Object(__WEBPACK_IMPORTED_MODULE_1__area__["a" /* calcAreasByPattern */])(cellMap, pattern);
-    return Object(__WEBPACK_IMPORTED_MODULE_2__div__["a" /* calcDiv */])(cellMap, areas);
-}
-
-function calcCSS(div) {
-    if (!div.split || !div.split.length) {
-        return;
-    }
-    Object(__WEBPACK_IMPORTED_MODULE_3__length__["a" /* calcCSSWidthOrHeight */])(div, 'width');
-    Object(__WEBPACK_IMPORTED_MODULE_3__length__["a" /* calcCSSWidthOrHeight */])(div, 'height');
-};
 
 /***/ }),
 
@@ -612,6 +580,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         switchMenu: function switchMenu(target) {
             this.selected = target;
+        },
+        clickLogo: function clickLogo(e) {
+            console.log(e);
         }
     },
     mounted: function mounted() {
@@ -626,6 +597,44 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ }),
 
 /***/ 220:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = layout;
+/* harmony export (immutable) */ __webpack_exports__["a"] = calcCSS;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cell__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__area__ = __webpack_require__(221);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__div__ = __webpack_require__(222);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__length__ = __webpack_require__(247);
+
+
+
+
+
+/**
+ * calc layouts.
+ * @param {string} pattern `header header header, side main second, side main second`
+ * @param {string} rows `[start] 400px [second] 200px [third] 100px [end]`
+ * @param {string} cols `100px 500px auto 100px`
+ * @return {Object} div format.
+ */
+function layout(pattern, rows, cols) {
+    var cellMap = Object(__WEBPACK_IMPORTED_MODULE_0__cell__["a" /* calcCellMap */])(rows, cols);
+    var areas = Object(__WEBPACK_IMPORTED_MODULE_1__area__["a" /* calcAreasByPattern */])(cellMap, pattern);
+    return Object(__WEBPACK_IMPORTED_MODULE_2__div__["a" /* calcDiv */])(cellMap, areas);
+}
+
+function calcCSS(div) {
+    if (!div.split || !div.split.length) {
+        return;
+    }
+    Object(__WEBPACK_IMPORTED_MODULE_3__length__["a" /* calcCSSWidthOrHeight */])(div, 'width');
+    Object(__WEBPACK_IMPORTED_MODULE_3__length__["a" /* calcCSSWidthOrHeight */])(div, 'height');
+};
+
+/***/ }),
+
+/***/ 221:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -758,14 +767,14 @@ function calcAreasByPattern(cellMap, pattern) {
 
 /***/ }),
 
-/***/ 221:
+/***/ 222:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = calcDiv;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_create__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_create___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_create__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__line__ = __webpack_require__(245);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__line__ = __webpack_require__(246);
 
 /*
 
@@ -1075,7 +1084,7 @@ function calcDiv(cellMap, areas) {
 
 /***/ }),
 
-/***/ 245:
+/***/ 246:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1149,7 +1158,7 @@ function calcLines(cellMap, areas, isRow) {
 
 /***/ }),
 
-/***/ 246:
+/***/ 247:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1351,7 +1360,7 @@ function calcCSSWidthOrHeight(div, widthOrHeight) {
 
 /***/ }),
 
-/***/ 247:
+/***/ 248:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1405,7 +1414,7 @@ function applyStyle(vnodes, style) {
 
 /***/ }),
 
-/***/ 249:
+/***/ 250:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -1538,4 +1547,4 @@ function splitBySpace(input) {
 /***/ })
 
 },[17]);
-//# sourceMappingURL=app.46de7483a225171f1593.js.map
+//# sourceMappingURL=app.8da79d83af1908ffd0ff.js.map
