@@ -109,7 +109,8 @@ export default {
         pattern: String,
         rounder: {
             type: String,
-            default: '100%'
+            // fix for IE rounding issue
+            default: '99.99999999999999%'
         }
     },
     render(h, context) {
