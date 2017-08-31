@@ -589,7 +589,7 @@ module.exports = "<block\n    class=\"example-img-board\"\n    cols=\"1fr 1fr 1f
 /***/ 245:
 /***/ (function(module, exports) {
 
-module.exports = "<block\n    class=\"example-rounder\"\n    style=\"height: 300px;\"\n    cols=\"1fr 1fr 1fr\"\n    pattern=\"first second third\">\n    <div slot=\"first\" class=\"area-1\"></div>\n    <div slot=\"second\" class=\"area-2\"></div>\n    <div slot=\"third\" class=\"area-3\"></div>\n</block>\n"
+module.exports = "<block\n    class=\"example-rounder\"\n    style=\"height: 300px;\"\n    cols=\"1fr 1fr 1fr\"\n    rounder=\"99.99999999999999%\"\n    pattern=\"first second third\">\n    <div slot=\"first\" class=\"area-1\"></div>\n    <div slot=\"second\" class=\"area-2\"></div>\n    <div slot=\"third\" class=\"area-3\"></div>\n</block>\n"
 
 /***/ }),
 
@@ -1332,8 +1332,7 @@ function renderDefault(h, context) {
         pattern: String,
         rounder: {
             type: String,
-            // fix for IE rounding issue
-            default: '99.99999999999999%'
+            default: '100%'
         }
     },
     render: function render(h, context) {
@@ -1540,4 +1539,4 @@ function splitBySpace(input) {
 /***/ })
 
 },[28]);
-//# sourceMappingURL=app.ab1f01cd0172d4b6e700.js.map
+//# sourceMappingURL=app.9760272225d2c634fb6c.js.map
