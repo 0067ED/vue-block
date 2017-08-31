@@ -16,10 +16,10 @@ export function layout(pattern, rows, cols) {
     return calcDiv(cellMap, areas);
 }
 
-export function calcCSS(div) {
+export function calcCSS(div, rounder) {
     if (!div.split || !div.split.length) {
         return;
     }
-    calcCSSWidthOrHeight(div, 'width');
-    calcCSSWidthOrHeight(div, 'height');
+    calcCSSWidthOrHeight(div, 'width', rounder);
+    calcCSSWidthOrHeight(div, 'height', rounder);
 };

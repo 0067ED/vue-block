@@ -42,7 +42,7 @@ function renderDiv(isRoot, h, context, div) {
     };
     clazz[spClazz] = isOnepiece;
     clazz[`block-${div.type}`] = !isOnepiece;
-    calcCSS(div);
+    calcCSS(div, context.props.rounder);
     const style = {
         width: div.csswidth || '',
         height: div.cssheight || '',
@@ -106,7 +106,11 @@ export default {
             type: String,
             default: 'auto'
         },
-        pattern: String
+        pattern: String,
+        rounder: {
+            type: String,
+            default: '100%'
+        }
     },
     render(h, context) {
         const props = context.props;

@@ -62,15 +62,6 @@ function divideLengthByType(lengths) {
     return typedLengths;
 }
 
-/*
-function getFixedLength(fixedLengths, isRaw) {
-    if (!isRaw) {
-        fixedLengths = fixedLengths.map((len) => len.raw);
-    }
-    return fixedLengths.length ? `(100% - ${fixedLengths.join(' - ')})` : '100%';
-}
-*/
-
 /**
  * Remove dumplicate value inside both array.
  * Only remove by pair. And do not modify the input array.
@@ -97,7 +88,7 @@ function _calcFixedCSSLength(fixedLengths) {
         : (fixedLengths[0] || '');
 }
 
-function calcCSSLength(lengths, base) {
+function calcCSSLength(lengths, base, rounder) {
     const baseFixed = base.fixed;
     const fixed = lengths.fixed;
     // if has `fr` unit, then `auto` === `0`
@@ -117,9 +108,9 @@ function calcCSSLength(lengths, base) {
         // calc(fixed + (100% - basedFixed) * 1 / 3 )
         return baseFixed.length
             ? fixed.length
-                ? `calc(${fixed.join(' + ')} + (100% - ${baseFixed.join(' - ')}) * ${free} / ${baseFree})`
-                : `calc((100% - ${baseFixed.join(' - ')}) * ${free} / ${baseFree})`
-            : `calc(100% * ${free} / ${baseFree})`;
+                ? `calc(${fixed.join(' + ')} + (${rounder} - ${baseFixed.join(' - ')}) * ${free} / ${baseFree})`
+                : `calc((${rounder} - ${baseFixed.join(' - ')}) * ${free} / ${baseFree})`
+            : `calc(${rounder} * ${free} / ${baseFree})`;
     }
 
     // optimise for this case.
@@ -136,17 +127,6 @@ function calcCSSLength(lengths, base) {
             : `calc(100% - ${cleanBaseFixed.join(' - ')})`
         // 100%
         : '100%';
-
-    /*
-    let calcStr = lengths.fixed.join(' + ');
-    const freeUnit = hasFRUnit ? lengths.baseFr : lengths.baseAuto;
-    const baseFreeUnit = hasFRUnit ? base.baseFr : base.baseAuto;
-    if (freeUnit > 0 && baseFreeUnit > 0) {
-        calcStr += `${calcStr ? ' + ' : ''}${base.fixedString}`;
-        calcStr += (baseFreeUnit === freeUnit ? '' : `*${freeUnit}/${baseFreeUnit}`);
-    }
-    return calcStr;
-    */
 }
 
 /**
@@ -184,13 +164,13 @@ export function parse(length) {
     };
 }
 
-export function calcCSSWidthOrHeight(div, widthOrHeight) {
+export function calcCSSWidthOrHeight(div, widthOrHeight, rounder) {
     const baseLengths = div[widthOrHeight].map(parse);
     const typedBaseLengths = divideLengthByType(baseLengths);
     div['cssmin' + widthOrHeight] = _calcFixedCSSLength(typedBaseLengths.fixed);
     div.split.forEach((d) => {
         const typedLengths = divideLengthByType(d[widthOrHeight].map(parse));
-        const cssStr = calcCSSLength(typedLengths, typedBaseLengths);
+        const cssStr = calcCSSLength(typedLengths, typedBaseLengths, rounder);
         d['css' + widthOrHeight] = cssStr;
     });
 }
