@@ -132,7 +132,12 @@ export default {
             default: '100%'
         },
         // aspect-ratio
-        aspectRatio: String
+        aspectRatio: {
+            type: String,
+            validator(value) {
+                return value.match(/^\s*\d+\s*:\s*\d+\s*$/);
+            }
+        }
     },
     render(h, context) {
         const props = context.props;
