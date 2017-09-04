@@ -7,7 +7,7 @@
 **vue-block** can provide you:
 
 - CSS grid like layout system.
-- Really easy to use [API](.#api), especially for new Vue beginner.
+- Really easy to use API, especially for new Vue beginner.
 - Support IE9+ and other modern browser which support [CSS calc](http://caniuse.com/#search=calc).
 - [Functional component](https://vuejs.org/v2/guide/render-function.html#Functional-Components), which is stateless and instanceless.
 
@@ -97,8 +97,8 @@ For Example:
     <div slot="main"></div>
     <div slot="right"></div>
 </block>
-
 ```
+
 
 ## Build Setup
 
