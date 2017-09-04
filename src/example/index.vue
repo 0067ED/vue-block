@@ -88,4 +88,8 @@ export default {
 .example-img-board .block-area {
     border: 1px solid #FFF;
 }
+.example-img-board img {
+    width: 100%;
+    height: 100%;
+}
 </style>
