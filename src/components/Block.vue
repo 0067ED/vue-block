@@ -52,14 +52,30 @@ function renderDiv(isRoot, h, context, div) {
 
     if (div.split) {
         const userData = isRoot ? context.data : {};
+        const vnodes = div.split.map(renderDiv.bind(null, false, h, context));
         return <div class={clazz} style={style} {...userData}>
-            {div.split.map(renderDiv.bind(null, false, h, context))}
+            {isRoot ? renderAspectRatioWrapper(h, context, vnodes) : vnodes}
         </div>;
     }
 
     // is area
     const usedSlot = context.slots()[div.name];
     return renderVNodes(h, usedSlot, clazz, style);
+}
+
+function renderAspectRatioWrapper(h, context, vnodes) {
+    const props = context.props;
+    if (!props.aspectRatio) {
+        return vnodes;
+    }
+
+    const ar = props.aspectRatio.trim().split(':').map((num) => parseInt(num, 10));
+    const width = ar[0];
+    const height = ar[1];
+    const cssAR = `padding-bottom:${height * 100 / width}%`;
+    return <div class="block-ar" style={cssAR}>
+            <div class="block-ar-wrap">{vnodes}</div>
+        </div>;
 }
 
 function renderDefault(h, context) {
@@ -89,8 +105,12 @@ function renderDefault(h, context) {
         vnodes.push(<div class="block-middle block-center">{slots.middle}</div>);
     }
 
+    if (slots.default) {
+        vnodes.push.apply(vnodes, slots.default);
+    }
+
     return <div class={clazz} {...context.data}>
-            {vnodes}
+            {renderAspectRatioWrapper(h, context, vnodes)}
         </div>;
 }
 
@@ -110,6 +130,13 @@ export default {
         rounder: {
             type: String,
             default: '100%'
+        },
+        // aspect-ratio
+        aspectRatio: {
+            type: String,
+            validator(value) {
+                return value.match(/^\s*\d+\s*:\s*\d+\s*$/);
+            }
         }
     },
     render(h, context) {
@@ -185,5 +212,25 @@ export default {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+}
+
+.block-ar,
+.block-ar-wrap {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+.block-ar {
+    position: relative;
+    height: 0;
+    overflow: visible;
+}
+.block-ar-wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 </style>
