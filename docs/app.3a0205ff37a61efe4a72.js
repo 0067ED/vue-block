@@ -498,7 +498,7 @@ function renderDefault(h, context) {
         clazz['block-middle-container'] = true;
         vnodes.push(h(
             'div',
-            { 'class': 'block-middle block-center' },
+            { 'class': 'block-middle' },
             [slots.middle]
         ));
     }
@@ -1574,4 +1574,4 @@ function splitBySpace(input) {
 /***/ })
 
 },[17]);
-//# sourceMappingURL=app.0dcd14d0ccd5e738108b.js.map
+//# sourceMappingURL=app.3a0205ff37a61efe4a72.js.map
