@@ -333,7 +333,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 __WEBPACK_IMPORTED_MODULE_0__components_Block___default.a.install = function (Vue) {
     Vue.component(__WEBPACK_IMPORTED_MODULE_0__components_Block___default.a.name, __WEBPACK_IMPORTED_MODULE_0__components_Block___default.a);
 };
-__WEBPACK_IMPORTED_MODULE_0__components_Block___default.a.version = '1.0.6';
+__WEBPACK_IMPORTED_MODULE_0__components_Block___default.a.version = '1.0.7';
 
 /* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0__components_Block___default.a);
 
@@ -1574,4 +1574,4 @@ function splitBySpace(input) {
 /***/ })
 
 },[17]);
-//# sourceMappingURL=app.3a0205ff37a61efe4a72.js.map
+//# sourceMappingURL=app.06ae0644f3e0028eea13.js.map
