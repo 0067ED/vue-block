@@ -102,7 +102,7 @@ function renderDefault(h, context) {
 
     if (slots.middle) {
         clazz['block-middle-container'] = true;
-        vnodes.push(<div class="block-middle block-center">{slots.middle}</div>);
+        vnodes.push(<div class="block-middle">{slots.middle}</div>);
     }
 
     if (slots.default) {
@@ -205,13 +205,14 @@ export default {
     vertical-align: top;
 }
 .block-middle-container {
-    position: relative;
+    display: table;
+    width: 100%;
 }
 .block-middle {
+    display: table-cell;
     width: 100%;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    text-align: center;
+    vertical-align: middle;
 }
 
 .block-ar,
