@@ -101,8 +101,10 @@ function renderDefault(h, context) {
     }
 
     if (slots.middle) {
-        clazz['block-middle-container'] = true;
-        vnodes.push(<div class="block-middle">{slots.middle}</div>);
+        //clazz['block-middle-container'] = true;
+        vnodes.push(<div class="block-middle-container">
+            <div class="block-middle">{slots.middle}</div>
+        </div>);
     }
 
     if (slots.default) {
@@ -207,6 +209,7 @@ export default {
 .block-middle-container {
     display: table;
     width: 100%;
+    height: 100%;
 }
 .block-middle {
     display: table-cell;
