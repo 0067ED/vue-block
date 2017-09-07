@@ -1,5 +1,6 @@
 # CHANGELOG
 
+- 1.0.7 [bugfix] Fixed style bug: if element's height is odd number, `slot="middle"` will become blur in chrome.
 - 1.0.6 [feature] Support `aspect-ratio` prop.
         [feature] If `pattern` is not provided, then default slot will be visible.
 - 1.0.5 [bugfix] Support `id,on,ref` and [other prop](https://github.com/vuejs/babel-plugin-transform-vue-jsx#difference-from-react-jsx).
