@@ -333,7 +333,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 __WEBPACK_IMPORTED_MODULE_0__components_Block___default.a.install = function (Vue) {
     Vue.component(__WEBPACK_IMPORTED_MODULE_0__components_Block___default.a.name, __WEBPACK_IMPORTED_MODULE_0__components_Block___default.a);
 };
-__WEBPACK_IMPORTED_MODULE_0__components_Block___default.a.version = '1.0.7';
+__WEBPACK_IMPORTED_MODULE_0__components_Block___default.a.version = '1.0.8';
 
 /* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0__components_Block___default.a);
 
@@ -495,11 +495,15 @@ function renderDefault(h, context) {
     }
 
     if (slots.middle) {
-        clazz['block-middle-container'] = true;
+        //clazz['block-middle-container'] = true;
         vnodes.push(h(
             'div',
-            { 'class': 'block-middle' },
-            [slots.middle]
+            { 'class': 'block-middle-container' },
+            [h(
+                'div',
+                { 'class': 'block-middle' },
+                [slots.middle]
+            )]
         ));
     }
 
@@ -1574,4 +1578,4 @@ function splitBySpace(input) {
 /***/ })
 
 },[17]);
-//# sourceMappingURL=app.06ae0644f3e0028eea13.js.map
+//# sourceMappingURL=app.c77a245bcd4445ff1d5d.js.map
