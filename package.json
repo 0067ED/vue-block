@@ -12,10 +12,11 @@
     "layout"
   ],
   "main": "dist/block.js",
+  "types": "types/index.d.ts",
   "files": [
     "dist",
     "src",
-    "packages"
+    "types"
   ],
   "scripts": {
     "dev": "node build/dev-server.js",
