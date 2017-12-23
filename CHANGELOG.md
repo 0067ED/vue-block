@@ -1,5 +1,6 @@
 # CHANGELOG
 
+- 1.0.9 [feature] Add support for typescript.
 - 1.0.8 [bugfix] Fixed `slot="middle"` bug.
 - 1.0.7 [bugfix] Fixed style bug: if element's height is odd number, `slot="middle"` will become blur in chrome.
 - 1.0.6 [feature] Support `aspect-ratio` prop.
